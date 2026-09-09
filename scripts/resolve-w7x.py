@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath("../../"))
 
 from desc import set_device
 
-# set_device("gpu")
+set_device("gpu")
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -79,10 +79,10 @@ def set_poincare_equilibrium(eq):
 savedir = "../draft-images"
 os.makedirs(savedir, exist_ok=True)
 
-eq0 = get("W7-X")
+eq0 = load("./results/W7-X_output.h5")[-1]
 
 try:
-    eq_poin = load("poincare-resolve-w7x.h5")
+    eq_poin = load("./results/poincare-resolve-w7x.h5")
 except FileNotFoundError:
     eq_poin = eq0.copy()
     constraints = get_fixed_xsection_constraints(eq=eq_poin, fix_lambda=False)
@@ -96,15 +96,24 @@ except FileNotFoundError:
         ftol=1e-3,
     )
     eq_poin.surface = eq_poin.get_surface_at(rho=1)
-    eq_poin.save("poincare-resolve-w7x.h5")
+    eq_poin.save("./results/poincare-resolve-w7x.h5")
 
 
 try:
-    eq3 = load("poincare-resolve-w7x-solved.h5")
+    eq3 = load("./results/poincare-resolve-w7x-solved.h5")
 except FileNotFoundError:
     eq3 = eq_poin.copy()
     eq3.solve(verbose=3, maxiter=100, ftol=1e-3, gtol=0, xtol=0)
-    eq3.save("poincare-resolve-w7x-solved.h5")
+    eq3.save("./results/poincare-resolve-w7x-solved.h5")
+
+try:
+    eq4 = load("./results/poincare-resolve-w7x-cold-solved.h5")
+except FileNotFoundError:
+    eq4 = eq_poin.copy()
+    eq4.axis = eq4.surface.get_axis()
+    eq4.set_initial_guess()
+    eq4.solve(verbose=3, maxiter=1000, ftol=1e-3, gtol=0, xtol=0)
+    eq4.save("./results/poincare-resolve-w7x-cold-solved.h5")
 
 fig, ax = plt.subplots(3, 3, figsize=(18, 18))
 for arow in ax:
@@ -115,21 +124,77 @@ for arow in ax:
         a.sharex(ax[1, 0])
         a.sharey(ax[1, 0])
 levels = np.logspace(-6, -1, 30)
-plot_section(eq0, "|F|_normalized", log=True, levels=levels, phi=3, ax=ax[0])
-plot_section(eq_poin, "|F|_normalized", log=True, levels=levels, phi=3, ax=ax[1])
+plot_section(
+    eq0,
+    "|F|_normalized",
+    log=True,
+    levels=levels,
+    phi=np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True),
+    ax=ax[0],
+)
+plot_section(
+    eq_poin,
+    "|F|_normalized",
+    log=True,
+    levels=levels,
+    phi=np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True),
+    ax=ax[1],
+)
 plot_comparison(
     [eq0, eq_poin],
     labels=["original", "after"],
     theta=0,
     rho=1,
-    phi=3,
+    phi=np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True),
     color=["black", "purple"],
     ax=ax[1],
     legend=False,
 )
 for axi in ax[1]:
     axi.legend(*ax[1, 0].get_legend_handles_labels())
-plot_section(eq3, "|F|_normalized", log=True, levels=levels, phi=3, ax=ax[2])
+compare_kwargs = dict(
+    labels=["Poincare", "LCFS warm", "LCFS cold"],
+    theta=6,
+    rho=6,
+    phi=np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True),
+    color=["black", "red", "blue"],
+    lw=[3, 2, 1],
+    ls=["-", "--", ":"],
+    legend=False,
+)
+_, _, cdata = plot_comparison(
+    [eq_poin, eq3, eq4], ax=ax[2], return_data=True, **compare_kwargs
+)
+ax[2][2].legend(*ax[2, 0].get_legend_handles_labels())
+
+# zoom on the magnetic axis of each cross-section, placed in an empty corner
+Rc, Zc = cdata["rho_R_coords"], cdata["rho_Z_coords"]
+corners = [[0.03, 0.03, 0.34, 0.34], [0.03, 0.03, 0.34, 0.34], [0.63, 0.03, 0.34, 0.34]]
+w = 0.5e-3  # half width of the zoomed region, 1 mm across
+axins = []
+for corner, a in zip(corners, ax[2]):
+    axi = a.inset_axes(corner)
+    axi.set_aspect("equal")
+    axins.append(axi)
+# rho of the surface that falls inside the zoomed region, the axis being at rho=0
+plot_comparison(
+    [eq_poin, eq3, eq4], ax=axins, **{**compare_kwargs, "rho": np.array([5e-4])}
+)
+for i, (a, axi) in enumerate(zip(ax[2], axins)):
+    axi.set_xlim(Rc[0][0, 0, i] - w, Rc[0][0, 0, i] + w)
+    axi.set_ylim(Zc[0][0, 0, i] - w, Zc[0][0, 0, i] + w)
+    axi.set(title="", xlabel="", ylabel="", xticks=[], yticks=[])
+    axi.text(
+        0.5,
+        0.03,
+        f"{2e3 * w:.0f} mm",
+        transform=axi.transAxes,
+        va="bottom",
+        ha="center",
+        fontsize=12,
+        bbox=dict(fc="white", ec="none", alpha=0.85, pad=1),
+    )
+    a.indicate_inset_zoom(axi, edgecolor="gray")
 for a, tag in zip(ax[:, 0], ["a)", "b)", "c)"]):
     a.text(-0.3, 0.5, tag, transform=a.transAxes, va="center", ha="center", fontsize=22)
 # drop the per-axes colorbars plot_section makes, use a single centered one instead
@@ -163,38 +228,28 @@ fig.suptitle(
     + "|\\nabla |B|^{2}/(2\\mu_0)| \\rangle_{vol}$",
     y=1.01,
 )
-plt.savefig(f"{savedir}/w7x-force-e-1-e-6-v2.png", dpi=500, bbox_inches="tight")
+plt.savefig(f"{savedir}/w7x-force-e-1-e-6-v3.png", dpi=500, bbox_inches="tight")
 
-f1 = (
-    eq0.compute("<|F|>_vol")["<|F|>_vol"]
-    / eq0.compute("<|grad(|B|^2)|/2mu0>_vol")["<|grad(|B|^2)|/2mu0>_vol"]
-)
-f2 = (
-    eq_poin.compute("<|F|>_vol")["<|F|>_vol"]
-    / eq_poin.compute("<|grad(|B|^2)|/2mu0>_vol")["<|grad(|B|^2)|/2mu0>_vol"]
-)
-f3 = (
-    eq3.compute("<|F|>_vol")["<|F|>_vol"]
-    / eq3.compute("<|grad(|B|^2)|/2mu0>_vol")["<|grad(|B|^2)|/2mu0>_vol"]
-)
-print(f"Force error LCFS: {f1:.4e}")
-print(f"Force error Poincare: {f2:.4e}")
-print(f"Force error Poincare and LCFS: {f3:.4e}")
+eq_all = [eq0, eq_poin, eq3, eq4]
+eq_names = ["LCFS", "Poincare", "Poincare and LCFS warm", "Poincare and LCFS cold"]
+eq_data = {}
+for eq, name in zip(eq_all, eq_names):
+    f1 = (
+        eq.compute("<|F|>_vol")["<|F|>_vol"]
+        / eq.compute("<|grad(|B|^2)|/2mu0>_vol")["<|grad(|B|^2)|/2mu0>_vol"]
+    )
+    print(f"Force error {name}: {f1:.4e}")
 
-f1 = eq0.compute("W")["W"]
-f2 = eq_poin.compute("W")["W"]
-f3 = eq3.compute("W")["W"]
-print(f"Energy LCFS: {f1:.4e}")
-print(f"Energy Poincare: {f2:.4e}")
-print(f"Energy Poincare and LCFS: {f3:.4e}")
+    w1 = eq.compute("W")["W"]
+    print(f"Energy {name}: {w1:.4e}")
 
-V1 = eq0.compute("V")["V"]
-V2 = eq_poin.compute("V")["V"]
-V3 = eq3.compute("V")["V"]
-print(f"Volume LCFS: {V1:.4e}")
-print(f"Volume Poincare: {V2:.4e}")
-print(f"Volume Poincare and LCFS: {V3:.4e}")
-print(f"Volume change : {(V1 - V2)/V1 * 100}%")
+    V1 = eq.compute("V")["V"]
+    print(f"Volume {name}: {V1:.4e}")
+    eq_data[name] = {"F": f1, "W": w1, "V": V1}
+
+print(
+    f"Volume change : {(eq_data["LCFS"]["V"] - eq_data["Poincare"]["V"])/eq_data["LCFS"]["V"] * 100}%"
+)
 
 dense = LinearGrid(rho=np.array([1.0]), M=256, N=64, NFP=eq0.NFP)
 data0 = eq0.compute(["R", "Z"], grid=dense, basis="rpz")
@@ -214,3 +269,18 @@ print(f"Max LCFS deviation: {dmin.max():.4e} m, {dmin.max() / a0:.3%} of minor r
 print(
     f"Mean LCFS deviation: {dmin.mean():.4e} m, {dmin.mean() / a0:.3%} of minor radius"
 )
+
+axis_grid = LinearGrid(
+    rho=np.array([0.0]),
+    theta=np.array([0.0]),
+    zeta=np.linspace(0, 2 * np.pi / eq0.NFP, 256, endpoint=False),
+    NFP=eq0.NFP,
+)
+datap = eq_poin.compute(["R", "Z"], grid=axis_grid, basis="rpz")
+for eq, name in zip([eq3, eq4], eq_names[2:]):
+    data = eq.compute(["R", "Z"], grid=axis_grid, basis="rpz")
+    daxis = np.hypot(datap["R"] - data["R"], datap["Z"] - data["Z"])
+    print(
+        f"Max axis deviation {name}: {daxis.max():.4e} m, "
+        f"{daxis.max() / a0:.3%} of minor radius"
+    )

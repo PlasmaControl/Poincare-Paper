@@ -6,7 +6,7 @@ sys.path.append(os.path.abspath("../../"))
 
 from desc import set_device
 
-# set_device("gpu")
+set_device("gpu")
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -76,7 +76,7 @@ def set_poincare_equilibrium(eq):
     return eq_poincare
 
 
-eq = get("HELIOTRON")
+eq = load("./results/HELIOTRON_output.h5")[-1]
 savedir = "../draft-images"
 os.makedirs(savedir, exist_ok=True)
 
@@ -86,7 +86,7 @@ eq0.axis = eq0.surface.get_axis()
 eq0.set_initial_guess()
 
 try:
-    eq_poin = load("poincare_heliotron.h5")
+    eq_poin = load("./results/poincare_heliotron.h5")
 except:
     eq_poin = set_poincare_equilibrium(eq)  # zeta=0 surface will be fixed
     for N in range(1, eq.N + 1):
@@ -105,8 +105,9 @@ except:
         )
 
     eq_poin.surface = eq_poin.get_surface_at(rho=1)
-    eq_poin.save("poincare_heliotron.h5")
+    eq_poin.save("./results/poincare_heliotron.h5")
 
+phi = np.linspace(0, np.pi / eq.NFP, 3, endpoint=True)
 fig, ax = plt.subplots(2, 3, figsize=(18, 12))
 for a in ax[0]:
     a.set_aspect("equal")
@@ -118,7 +119,7 @@ for arow in ax:
         a.sharey(ax[1, 0])
 plot_comparison(
     eqs=[eq0, eq_poin0],
-    phi=3,
+    phi=phi,
     theta=6,
     rho=5,
     labels=["LCFS", "Poincare"],
@@ -130,7 +131,7 @@ plot_comparison(
 plot_comparison(
     eqs=[eq, eq_poin],
     rho=5,
-    phi=3,
+    phi=phi,
     labels=["LCFS", "Poincare"],
     ls=["-", "--"],
     lw=[3, 1],
@@ -160,8 +161,22 @@ for arow in ax:
         a.sharex(ax[1, 0])
         a.sharey(ax[1, 0])
 levels = np.logspace(-6, -2, 30)
-plot_section(eq, "|F|_normalized", log=True, levels=levels, phi=3, ax=ax[0])
-plot_section(eq_poin, "|F|_normalized", log=True, levels=levels, phi=3, ax=ax[1])
+plot_section(
+    eq,
+    "|F|_normalized",
+    log=True,
+    levels=levels,
+    phi=phi,
+    ax=ax[0],
+)
+plot_section(
+    eq_poin,
+    "|F|_normalized",
+    log=True,
+    levels=levels,
+    phi=phi,
+    ax=ax[1],
+)
 for a, tag in zip(ax[:, 0], ["a)", "b)"]):
     a.text(
         -0.26, 0.5, tag, transform=a.transAxes, va="center", ha="center", fontsize=22
@@ -184,7 +199,6 @@ cax = fig.add_axes(
 )
 cbar = fig.colorbar(ax[0, 0].collections[0], cax=cax)
 cbar.set_ticks(10.0**exps, labels=[f"$10^{{{e}}}$" for e in exps])
-phi = np.linspace(0, 2 * np.pi / eq.NFP, 3, endpoint=False)
 for axi in ax:
     for i in range(3):
         axi[i].set_title(

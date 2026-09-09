@@ -82,7 +82,8 @@ plot_qs_error(
     rho=10,
     fT=False,
 )
-plot_1d(eqfam[-1], "iota", ax=ax[0, 2])
+plot_1d(eqfam[0], "iota", label="initial", color="blue", ax=ax[0, 2])
+plot_1d(eqfam[-1], "iota", label="optimized", color="red", ax=ax[0, 2])
 plot_comparison(
     [eqfam[0], eqfam[-1]],
     labels=["initial", "optimized"],
