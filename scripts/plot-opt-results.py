@@ -6,6 +6,7 @@ sys.path.append(os.path.abspath("../../"))
 
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FormatStrFormatter
 
 from desc.io import load
 from desc.equilibrium import EquilibriaFamily, Equilibrium
@@ -40,7 +41,7 @@ print_backend_info()
 
 plt.rcParams.update(
     {
-        "font.size": 16,
+        "font.size": 22,
         "axes.titlesize": 20,
         "axes.labelsize": 20,
         "legend.fontsize": 16,
@@ -61,26 +62,31 @@ for a in ax[1, 1:]:
     a.sharex(ax[1, 0])
     a.sharey(ax[1, 0])
 
+known = set(fig.axes)
 plot_boozer_surface(eqfam[-1], ax=ax[0, 0])
+for cax in set(fig.axes) - known:
+    cax.yaxis.set_major_formatter(FormatStrFormatter("%.2f"))
 plot_qs_error(
     eqfam[0],
     helicity=(1, eqfam[-1].NFP),
     log=True,
     ax=ax[0, 1],
-    marker=["o"] * 2,
-    labels=[r"$f_B$ initial", r"$f_C$ initial"],
+    color=["blue"],
+    labels=[r"$f_{qs}$ initial"],
     rho=10,
     fT=False,
+    fB=False,
 )
 plot_qs_error(
     eqfam[-1],
     helicity=(1, eqfam[-1].NFP),
     log=True,
     ax=ax[0, 1],
-    marker=["x"] * 2,
-    labels=[r"$f_B$ optimized", r"$f_C$ optimized"],
+    color=["red"],
+    labels=[r"$f_{qs}$ optimized"],
     rho=10,
     fT=False,
+    fB=False,
 )
 plot_1d(eqfam[0], "iota", label="initial", color="blue", ax=ax[0, 2])
 plot_1d(eqfam[-1], "iota", label="optimized", color="red", ax=ax[0, 2])
@@ -91,12 +97,26 @@ plot_comparison(
     ax=ax[1],
     legend=False,
 )
-for axi in ax[1]:
-    axi.legend(*ax[1, 0].get_legend_handles_labels())
+ax[1, -1].legend(*ax[1, 0].get_legend_handles_labels(), loc="lower right")
+ax[0, 1].set_ylim(1e-3, 1e0)
 
-for axi, tag in zip(ax[0], ["a)", "b)", "c)"]):
-    axi.text(0.5, -0.2, tag, transform=axi.transAxes, ha="center", fontsize=22)
-ax[1, 1].text(0.5, -0.2, "d)", transform=ax[1, 1].transAxes, ha="center", fontsize=22)
+tagged = [*ax[0], ax[1, 0]]
+tags = [
+    axi.text(0, 0.5, tag, transform=axi.transAxes, ha="right", va="center", fontsize=22)
+    for axi, tag in zip(tagged, ["a)", "b)", "c)", "d)"])
+]
+# bottom row height is locked by its equal aspect ratio, so shrink the figure until
+# the top row, which takes whatever is left, matches it. tags move with the layout
+for _ in range(20):
+    fig.canvas.draw()
+    for axi, t in zip(tagged, tags):
+        x0 = axi.yaxis.get_tightbbox(fig.canvas.get_renderer()).x0
+        t.set_x(axi.transAxes.inverted().transform((x0, 0))[0] - 0.04)
+    dh = ax[0, 0].get_window_extent().height - ax[1, 0].get_window_extent().height
+    if abs(dh) < 1:
+        break
+    w, h = fig.get_size_inches()
+    fig.set_size_inches(w, h - dh / fig.dpi)
 fig.savefig(
     f"{folder}/post-plots-L{L}M{M}N{N}-{name}.png",
     dpi=300,

@@ -42,7 +42,7 @@ from desc.backend import print_backend_info
 
 plt.rcParams.update(
     {
-        "font.size": 16,
+        "font.size": 22,
         "axes.titlesize": 20,
         "axes.labelsize": 20,
         "legend.fontsize": 16,
@@ -142,7 +142,7 @@ plot_section(
 )
 plot_comparison(
     [eq0, eq_poin],
-    labels=["original", "after"],
+    labels=["Original LCFS", "Poincaré Solved LCFS"],
     theta=0,
     rho=1,
     phi=np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True),
@@ -150,10 +150,9 @@ plot_comparison(
     ax=ax[1],
     legend=False,
 )
-for axi in ax[1]:
-    axi.legend(*ax[1, 0].get_legend_handles_labels())
+ax[1, 2].legend(*ax[1, 0].get_legend_handles_labels())
 compare_kwargs = dict(
-    labels=["Poincare", "LCFS warm", "LCFS cold"],
+    labels=["Poincaré", "LCFS warm", "LCFS cold"],
     theta=6,
     rho=6,
     phi=np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True),
@@ -196,7 +195,7 @@ for i, (a, axi) in enumerate(zip(ax[2], axins)):
     )
     a.indicate_inset_zoom(axi, edgecolor="gray")
 for a, tag in zip(ax[:, 0], ["a)", "b)", "c)"]):
-    a.text(-0.3, 0.5, tag, transform=a.transAxes, va="center", ha="center", fontsize=22)
+    a.text(-0.4, 0.5, tag, transform=a.transAxes, va="center", ha="center", fontsize=22)
 # drop the per-axes colorbars plot_section makes, use a single centered one instead
 for a in fig.axes:
     cbar = getattr(a, "_colorbar", None)
@@ -210,8 +209,9 @@ exps = np.arange(np.log10(levels[0]), np.log10(levels[-1]) + 1).astype(int)
 box = [a.get_position() for a in ax.flatten()]
 y0, y1 = min(b.y0 for b in box), max(b.y1 for b in box)
 height = 0.33 * (y1 - y0)
+# only top 2 row use colorbar
 cax = fig.add_axes(
-    [max(b.x1 for b in box) + 0.01, 0.5 * (y0 + y1 - height), 0.012, height]
+    [max(b.x1 for b in box) + 0.01, 0.7 * (y0 + y1 - height), 0.012, height]
 )
 cbar = fig.colorbar(ax[0, 0].collections[0], cax=cax)
 cbar.set_ticks(10.0**exps, labels=[f"$10^{{{e}}}$" for e in exps])

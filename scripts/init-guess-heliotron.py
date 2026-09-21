@@ -42,7 +42,7 @@ from desc.backend import print_backend_info
 
 plt.rcParams.update(
     {
-        "font.size": 16,
+        "font.size": 22,
         "axes.titlesize": 20,
         "axes.labelsize": 20,
         "legend.fontsize": 16,

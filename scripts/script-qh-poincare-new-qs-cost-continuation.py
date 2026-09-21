@@ -50,21 +50,21 @@ from desc.compat import rotate_zeta, rescale
 print_backend_info()
 
 L, M, N = 12, 12, 6
-w_qs, w_ar, w_vol = 3, 3, 1
+w_qs, w_ar, w_vol = 3, 3, 0
 w_el, kappa, w_B = 0, 0, 1
 folder = "./results"
-name = f"wqs{w_qs}-war{w_ar}-wvol{w_vol}-wel{w_el}-wb{w_B}"
+name = f"wqs{w_qs}-war{w_ar}-wvol{w_vol}-wel{w_el}-wb{w_B}-no-norm0"
 os.makedirs(folder, exist_ok=True)
 
 print(name)
 
 try:
-    eq = load(f"poincare-initial-QH-L{L}M{M}N{N}.h5")
+    eq = load(f"./results/poincare-initial-QH-L{L}M{M}N{N}.h5")
     eq.xsection = eq.get_surface_at(zeta=0)
     eq.surface = eq.get_surface_at(rho=1)
 except FileNotFoundError:
     # get the initial unoptimized equilibrium
-    eq = load("init_precise_QH.h5")
+    eq = load("./results/init_precise_QH.h5")
     eq.change_resolution(L=L, M=M, N=N, L_grid=2 * L, M_grid=2 * M, N_grid=2 * N)
     eq.solve(maxiter=500, verbose=3, ftol=1e-3)
     eq.xsection = eq.get_surface_at(zeta=0)
@@ -127,7 +127,8 @@ print(f"dim_f = {probe.dim_f}, initial norm = {norm0:.4e}")
 
 def run_step(n, eqfam, ftol=1e-2, **kwargs):
     eq = eqfam[-1]
-    objs = (make_qs(eq, w_qs / norm0),)
+    # objs = (make_qs(eq, w_qs / norm0),)
+    objs = (make_qs(eq, w_qs),)
     if w_ar > 0:
         objs += (AspectRatio(eq=eq, target=8, weight=w_ar, normalize=False),)
     if w_vol > 0:
