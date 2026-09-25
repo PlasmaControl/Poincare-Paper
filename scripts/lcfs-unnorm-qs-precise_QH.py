@@ -1,8 +1,4 @@
-"""Example script for recreating the "precise QH" configuration of Landreman and Paul.
-
-Note that this resembles their optimization process in SIMSOPT, but the final optimized
-equilibrium is slightly different from their VMEC solution.
-"""
+"""QH optimization using LCFS variables but no QS normalization."""
 
 import sys
 import os
@@ -38,7 +34,7 @@ from desc.objectives import (
 from desc.optimize import Optimizer
 
 try:
-    eq = load(f"./results/lcfs-initial-QH-L8M8N8.h5")
+    eq = load(f"./equilibria/lcfs-initial-QH-L8M8N8.h5")
 except FileNotFoundError:
     # create initial equilibrium
     surf = FourierRZToroidalSurface(
@@ -108,4 +104,4 @@ for n in range(1, eq.M + 1):
     )
     eqfam.append(eq_new)
 
-eqfam.save("./results/equivalent_precise_QH_output.h5")
+eqfam.save("./equilibria/QH_LCFS_(unnorm_f_qs)_output.h5")

@@ -20,7 +20,7 @@ plt.rcParams.update(
     }
 )
 
-savedir = "../draft-images"
+savedir = "../extra-images"
 os.makedirs(savedir, exist_ok=True)
 
 NFP = 5

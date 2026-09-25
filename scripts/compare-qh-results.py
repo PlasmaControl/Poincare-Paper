@@ -1,3 +1,5 @@
+"""Plot comparison of all QH optimization variants figure."""
+
 import sys
 import os
 
@@ -9,32 +11,7 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 
 from desc.io import load
-from desc.equilibrium import EquilibriaFamily, Equilibrium
-from desc.continuation import solve_continuation_automatic
-from desc.optimize import Optimizer
-from desc.grid import LinearGrid
-from desc.objectives import (
-    ObjectiveFunction,
-    ForceBalance,
-    FixCurrent,
-    FixSectionLambda,
-    FixSectionR,
-    FixSectionZ,
-    FixBoundaryR,
-    FixBoundaryZ,
-    FixPressure,
-    FixPsi,
-    FixIota,
-    QuasisymmetryTwoTerm,
-    AspectRatio,
-    Elongation,
-    Volume,
-    get_fixed_xsection_constraints,
-    get_fixed_boundary_constraints,
-)
-from desc.examples import get
 from desc.plotting import *
-from desc.geometry import ZernikeRZToroidalSection, FourierRZToroidalSurface
 from desc.backend import print_backend_info
 
 print_backend_info()
@@ -49,13 +26,11 @@ plt.rcParams.update(
     }
 )
 
-L, M, N = 12, 12, 6
-name = "wqs3-war3-wvol0"
-folder = "../draft-images"
-eqp = load(f"./results/Scan-QH-Paper-tight/eqfam-L{L}M{M}N{N}-{name}.h5")[-1]
-eq_qh = load(f"./results/landreman_paul_precise_QH_output.h5")
-eq_qh2 = load(f"./results/equivalent_precise_QH_output.h5")[-1]
-eq_qh3 = load(f"./results/normalized_qs_precise_QH_output.h5")[-1]
+folder = "../figures"
+eqp = load("./equilibria/poincare-QH-optimized-wqs3-war3-wvol0-wb1.h5")[-1]
+eq_qh = load(f"./equilibria/QH_L&P_2022_output.h5")
+eq_qh2 = load(f"./equilibria/QH_LCFS_(unnorm_f_qs)_output.h5")[-1]
+eq_qh3 = load(f"./equilibria/QH_LCFS_output.h5")[-1]
 eqs = [eqp, eq_qh, eq_qh2, eq_qh3]
 labels = [
     "Poincaré",
@@ -176,7 +151,11 @@ for eq, label in zip(eqs, labels):
         ["V", "R0", "a", "<|B|>_vol", "<|F|>_vol", "<|grad(|B|^2)|/2mu0>_vol"]
     )
     _, _, qs = plot_qs_error(
-        eq, helicity=(1, eq.NFP), rho=np.array([1.0]), fT=False, fB=False,
+        eq,
+        helicity=(1, eq.NFP),
+        rho=np.array([1.0]),
+        fT=False,
+        fB=False,
         return_data=True,
     )
     print(

@@ -1,3 +1,5 @@
+"""Plots and optimizations related to HELIOTRON case."""
+
 import sys
 import os
 
@@ -12,32 +14,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from desc.io import load
-from desc.equilibrium import EquilibriaFamily, Equilibrium
-from desc.continuation import solve_continuation_automatic
-from desc.optimize import Optimizer
-from desc.grid import LinearGrid
+from desc.equilibrium import Equilibrium
 from desc.objectives import (
     ObjectiveFunction,
     ForceBalance,
-    FixCurrent,
-    FixSectionLambda,
-    FixSectionR,
-    FixSectionZ,
-    FixBoundaryR,
-    FixBoundaryZ,
-    FixPressure,
-    FixPsi,
-    FixIota,
-    QuasisymmetryTwoTerm,
-    AspectRatio,
-    Elongation,
-    Volume,
     get_fixed_xsection_constraints,
-    get_fixed_boundary_constraints,
 )
-from desc.examples import get
 from desc.plotting import *
-from desc.geometry import ZernikeRZToroidalSection, FourierRZToroidalSurface
 from desc.backend import print_backend_info
 
 plt.rcParams.update(
@@ -76,7 +59,7 @@ def set_poincare_equilibrium(eq):
     return eq_poincare
 
 
-eq = load("./results/HELIOTRON_output.h5")[-1]
+eq = load("./equilibria/HELIOTRON_output.h5")[-1]
 savedir = "../draft-images"
 os.makedirs(savedir, exist_ok=True)
 
@@ -86,7 +69,7 @@ eq0.axis = eq0.surface.get_axis()
 eq0.set_initial_guess()
 
 try:
-    eq_poin = load("./results/poincare_heliotron.h5")
+    eq_poin = load("./equilibria/poincare_heliotron.h5")
 except:
     eq_poin = set_poincare_equilibrium(eq)  # zeta=0 surface will be fixed
     for N in range(1, eq.N + 1):
@@ -105,7 +88,7 @@ except:
         )
 
     eq_poin.surface = eq_poin.get_surface_at(rho=1)
-    eq_poin.save("./results/poincare_heliotron.h5")
+    eq_poin.save("./equilibria/poincare_heliotron.h5")
 
 phi = np.linspace(0, np.pi / eq.NFP, 3, endpoint=True)
 fig, ax = plt.subplots(2, 3, figsize=(18, 12))

@@ -20,4 +20,4 @@ eq = VMECIO.load(file, L=8, M=8, N=8, profile="current")
 
 # loaded eq is just a fit, solve to get actual equilibrium
 eq.solve(maxiter=1000, ftol=1e-6, gtol=1e-8, xtol=1e-8, verbose=3)
-eq.save(f"../results/landreman_paul_precise_QH_output.h5")
+eq.save(f"../equilibria/QH_L&P_2022_output.h5")

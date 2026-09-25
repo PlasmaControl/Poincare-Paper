@@ -1,3 +1,5 @@
+"""Compare the force error and other metrics of QH cases with same res."""
+
 import sys
 import os
 
@@ -6,35 +8,9 @@ sys.path.append(os.path.abspath("../../"))
 
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.ticker import FormatStrFormatter
 
 from desc.io import load
-from desc.equilibrium import EquilibriaFamily, Equilibrium
-from desc.continuation import solve_continuation_automatic
-from desc.optimize import Optimizer
-from desc.grid import LinearGrid
-from desc.objectives import (
-    ObjectiveFunction,
-    ForceBalance,
-    FixCurrent,
-    FixSectionLambda,
-    FixSectionR,
-    FixSectionZ,
-    FixBoundaryR,
-    FixBoundaryZ,
-    FixPressure,
-    FixPsi,
-    FixIota,
-    QuasisymmetryTwoTerm,
-    AspectRatio,
-    Elongation,
-    Volume,
-    get_fixed_xsection_constraints,
-    get_fixed_boundary_constraints,
-)
-from desc.examples import get
-from desc.plotting import *
-from desc.geometry import ZernikeRZToroidalSection, FourierRZToroidalSurface
+from desc.plotting import plot_1d, plot_section, plot_comparison, plot_qs_error
 from desc.backend import print_backend_info
 
 print_backend_info()
@@ -50,21 +26,15 @@ plt.rcParams.update(
 )
 
 folder = "../extra-images"
-eqp = load("./results/same-res-solves/poincare_LM12_N8_tight_solve.h5")
-eq_qh = load(
-    "./results/same-res-solves/landreman_paul_precise_QH_output_LM12_N8_tight_solve.h5"
-)
-eq_qh2 = load(
-    "./results/same-res-solves/equivalent_precise_QH_output_LM12_N8_tight_solve.h5"
-)
-eq_qh3 = load(
-    "./results/same-res-solves/normalized_qs_precise_QH_output_LM12_N8_tight_solve.h5"
-)
+eqp = load("./equilibria/same-res-solves/Poincare_LM12_N8_tight_solve.h5")
+eq_qh = load("./equilibria/same-res-solves/L&P_2022_LM12_N8_tight_solve.h5")
+eq_qh2 = load("./equilibria/same-res-solves/LCFS_(unnorm_f_qs)_LM12_N8_tight_solve.h5")
+eq_qh3 = load("./equilibria/same-res-solves/LCFS_LM12_N8_tight_solve.h5")
 eqs = [eqp, eq_qh, eq_qh2, eq_qh3]
 labels = [
-    "Poincaré",
-    "L&P 2022",
-    "LCFS (unnorm. f_qs)",
+    "Poincare",
+    "L&P_2022",
+    "LCFS_(unnorm_f_qs)",
     "LCFS",
 ]
 colors = ["red", "blue", "green", "magenta"]

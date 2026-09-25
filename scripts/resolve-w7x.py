@@ -1,3 +1,5 @@
+"""Plots and optimizations related to W7-x like case."""
+
 import sys
 import os
 
@@ -12,32 +14,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from desc.io import load
-from desc.equilibrium import EquilibriaFamily, Equilibrium
-from desc.continuation import solve_continuation_automatic
-from desc.optimize import Optimizer
+from desc.equilibrium import Equilibrium
 from desc.grid import LinearGrid
 from desc.objectives import (
     ObjectiveFunction,
     ForceBalance,
-    FixCurrent,
-    FixSectionLambda,
-    FixSectionR,
-    FixSectionZ,
-    FixBoundaryR,
-    FixBoundaryZ,
-    FixPressure,
-    FixPsi,
-    FixIota,
-    QuasisymmetryTwoTerm,
-    AspectRatio,
-    Elongation,
-    Volume,
     get_fixed_xsection_constraints,
-    get_fixed_boundary_constraints,
 )
-from desc.examples import get
 from desc.plotting import *
-from desc.geometry import ZernikeRZToroidalSection, FourierRZToroidalSurface
 from desc.backend import print_backend_info
 
 plt.rcParams.update(
@@ -76,13 +60,13 @@ def set_poincare_equilibrium(eq):
     return eq_poincare
 
 
-savedir = "../draft-images"
+savedir = "../figures"
 os.makedirs(savedir, exist_ok=True)
 
-eq0 = load("./results/W7-X_output.h5")[-1]
+eq0 = load("./equilibria/W7-X_output.h5")[-1]
 
 try:
-    eq_poin = load("./results/poincare-resolve-w7x.h5")
+    eq_poin = load("./equilibria/poincare-resolve-w7x.h5")
 except FileNotFoundError:
     eq_poin = eq0.copy()
     constraints = get_fixed_xsection_constraints(eq=eq_poin, fix_lambda=False)
@@ -96,24 +80,24 @@ except FileNotFoundError:
         ftol=1e-3,
     )
     eq_poin.surface = eq_poin.get_surface_at(rho=1)
-    eq_poin.save("./results/poincare-resolve-w7x.h5")
+    eq_poin.save("./equilibria/poincare-resolve-w7x.h5")
 
 
 try:
-    eq3 = load("./results/poincare-resolve-w7x-solved.h5")
+    eq3 = load("./equilibria/poincare-resolve-w7x-solved.h5")
 except FileNotFoundError:
     eq3 = eq_poin.copy()
     eq3.solve(verbose=3, maxiter=100, ftol=1e-3, gtol=0, xtol=0)
-    eq3.save("./results/poincare-resolve-w7x-solved.h5")
+    eq3.save("./equilibria/poincare-resolve-w7x-solved.h5")
 
 try:
-    eq4 = load("./results/poincare-resolve-w7x-cold-solved.h5")
+    eq4 = load("./equilibria/poincare-resolve-w7x-cold-solved.h5")
 except FileNotFoundError:
     eq4 = eq_poin.copy()
     eq4.axis = eq4.surface.get_axis()
     eq4.set_initial_guess()
     eq4.solve(verbose=3, maxiter=1000, ftol=1e-3, gtol=0, xtol=0)
-    eq4.save("./results/poincare-resolve-w7x-cold-solved.h5")
+    eq4.save("./equilibria/poincare-resolve-w7x-cold-solved.h5")
 
 fig, ax = plt.subplots(3, 3, figsize=(18, 18))
 for arow in ax:

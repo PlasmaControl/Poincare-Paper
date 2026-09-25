@@ -1,40 +1,16 @@
+"""Plot the Poincare QH optimization figure."""
+
 import sys
 import os
 
 sys.path.insert(0, os.path.abspath("."))
 sys.path.append(os.path.abspath("../../"))
 
-import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 
 from desc.io import load
-from desc.equilibrium import EquilibriaFamily, Equilibrium
-from desc.continuation import solve_continuation_automatic
-from desc.optimize import Optimizer
-from desc.grid import LinearGrid
-from desc.objectives import (
-    ObjectiveFunction,
-    ForceBalance,
-    FixCurrent,
-    FixSectionLambda,
-    FixSectionR,
-    FixSectionZ,
-    FixBoundaryR,
-    FixBoundaryZ,
-    FixPressure,
-    FixPsi,
-    FixIota,
-    QuasisymmetryTwoTerm,
-    AspectRatio,
-    Elongation,
-    Volume,
-    get_fixed_xsection_constraints,
-    get_fixed_boundary_constraints,
-)
-from desc.examples import get
-from desc.plotting import *
-from desc.geometry import ZernikeRZToroidalSection, FourierRZToroidalSurface
+from desc.plotting import plot_boozer_surface, plot_qs_error, plot_1d, plot_comparison
 from desc.backend import print_backend_info
 
 print_backend_info()
@@ -49,10 +25,8 @@ plt.rcParams.update(
     }
 )
 
-L, M, N = 12, 12, 6
-name = "wqs3-war3-wvol0"
-folder = "../draft-images"
-eqfam = load(f"./results/Scan-QH-Paper-tight/eqfam-L{L}M{M}N{N}-{name}.h5")
+folder = "../figures"
+eqfam = load("./equilibria/poincare-QH-optimized-wqs3-war3-wvol0-wb1.h5")
 
 fig, ax = plt.subplots(2, 3, figsize=(18, 12))
 # bottom row mimics what plot_surfaces does when it makes its own axes
@@ -118,7 +92,7 @@ for _ in range(20):
     w, h = fig.get_size_inches()
     fig.set_size_inches(w, h - dh / fig.dpi)
 fig.savefig(
-    f"{folder}/post-plots-L{L}M{M}N{N}-{name}.png",
+    f"{folder}/poincare-QH-optimized.png",
     dpi=300,
     bbox_inches="tight",
 )
