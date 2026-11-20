@@ -11,7 +11,10 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 
 from desc.io import load
+from desc.grid import LinearGrid
+from desc.integrals import surface_averages
 from desc.plotting import *
+from qs_error import plot_qs_error_fsa
 from desc.backend import print_backend_info
 
 print_backend_info()
@@ -57,44 +60,41 @@ for i, (eq, label) in enumerate(zip(eqs, labels)):
         cax.yaxis.set_major_formatter(FormatStrFormatter("%.2f"))
 
 for eq, label, color in zip(eqs, labels, colors):
-    plot_qs_error(
-        eq,
-        helicity=(1, eq.NFP),
-        log=True,
-        ax=ax[0, 0],
-        labels=[label],
-        color=[color],
-        rho=10,
-        fT=False,
-        fB=False,
-    )
+    plot_qs_error_fsa(eq, rho=10, ax=ax[0, 0], label=label, color=color)
 for eq, label, color in zip(eqs, labels, colors):
     lw = 3 if eq in eqs[:2] else 1
     plot_1d(eq, "iota", label=label, color=color, ax=ax[0, 1], lw=lw)
 
 for eq, label, color in zip(eqs, labels, colors):
     lw = 3 if eq in eqs[:2] else 1
-    plot_1d(
+    plot_fsa(
         eq, "|F|_normalized", label=label, color=color, ax=ax[0, 2], log=True, lw=lw
     )
 
+rho = np.linspace(0.05, 1, 40)
 for eq, label, color in zip(eqs, labels, colors):
     lw = 3 if eq in eqs[:2] else 1
-    plot_1d(eq, "|J|", label=label, color=color, ax=ax[0, 3], log=False, lw=lw)
+    grid = LinearGrid(rho=rho, M=eq.M_grid, N=eq.N_grid, NFP=eq.NFP, sym=False)
+    data = eq.compute(["|J|", "sqrt(g)"], grid=grid)
+    J = surface_averages(grid, data["|J|"], sqrt_g=data["sqrt(g)"], expand_out=False)
+    vol = eq.compute(["<|B|>_vol", "<|grad(|B|^2)|/2mu0>_vol"])
+    J = J * vol["<|B|>_vol"] / vol["<|grad(|B|^2)|/2mu0>_vol"]
+    ax[0, 3].semilogy(rho, J, label=label, color=color, lw=lw)
+ax[0, 2].set_ylabel(
+    r"$\langle |\mathbf{F}| \rangle / \langle |\nabla |B|^2 / (2\mu_0)| \rangle_{vol}$"
+)
+ax[0, 3].set_xlabel(r"$\rho$")
+ax[0, 3].set_ylabel(
+    r"$\langle |B| \rangle_{vol} \langle |\mathbf{J}| \rangle"
+    r" / \langle |\nabla |B|^2 / (2\mu_0)| \rangle_{vol}$"
+)
 
 
-# leave the bottom 40% of each top-row panel free for the legend
-for axi in ax[0, :3]:
-    lo, hi = axi.get_ylim()
-    if axi.get_yscale() == "log":
-        lo, hi = np.log10(lo), np.log10(hi)
-        axi.set_ylim(10 ** (hi - (hi - lo) / 0.6), 10**hi)
-    else:
-        axi.set_ylim(hi - (hi - lo) / 0.6, hi)
-    axi.legend(loc="lower center", framealpha=1.0)
-
-ax[0, 3].legend(loc="upper left", framealpha=1.0)
-ax[0, 0].set_ylim(top=1e-2)
+for axi in ax[0]:
+    if axi.get_legend() is not None:
+        axi.get_legend().remove()
+# at least up to 1e-2 so the log axis shows more than one decade tick
+ax[0, 0].set_ylim(top=max(ax[0, 0].get_ylim()[1], 1e-2))
 
 levels = np.logspace(-6, -2, 30)
 exps = np.arange(np.log10(levels[0]), np.log10(levels[-1]) + 1).astype(int)
@@ -118,11 +118,23 @@ for axi, tag in zip([*ax[0], *ax[1:, 0]], ["a)", "b)", "c)", "d)", "e)", "f)"]):
     x = axi.transAxes.inverted().transform((x0, 0))[0] - 0.04
     axi.text(x, 0.5, tag, transform=axi.transAxes, ha="right", va="center", fontsize=22)
 
-fig.savefig(
-    f"{folder}/compare-qh-results.png",
-    dpi=500,
-    bbox_inches="tight",
+# shared single-line legend above the top row, clear of the tall y-labels
+fig.set_layout_engine("none")  # freeze tight layout so it can't move the axes
+renderer = fig.canvas.get_renderer()
+top = max(
+    max(axi.get_tightbbox(renderer).y1, axi.yaxis.label.get_window_extent(renderer).y1)
+    for axi in ax[0]
 )
+fig.legend(
+    *ax[0, 1].get_legend_handles_labels(),
+    loc="lower center",
+    bbox_to_anchor=(0.5, fig.transFigure.inverted().transform((0, top))[1]),
+    ncol=len(eqs),
+    frameon=False,
+)
+
+fig.savefig(f"{folder}/compare-qh-results.pdf", dpi=300, bbox_inches="tight")
+fig.savefig(f"{folder}/compare-qh-results.png", dpi=300, bbox_inches="tight")
 
 fig, ax = plt.subplots(
     2, 2, figsize=(12, 12), sharex=True, sharey=True, subplot_kw=dict(aspect="equal")
@@ -139,29 +151,19 @@ plot_comparison(
     ax=ax,
 )
 ax[1, 1].legend(*ax[0, 0].get_legend_handles_labels(), loc="lower right")
-fig.savefig(
-    f"{folder}/compare-qh-surfaces.png",
-    dpi=500,
-    bbox_inches="tight",
-)
+fig.savefig(f"{folder}/compare-qh-surfaces.pdf", dpi=300, bbox_inches="tight")
+fig.savefig(f"{folder}/compare-qh-surfaces.png", dpi=300, bbox_inches="tight")
 
 
 for eq, label in zip(eqs, labels):
     d = eq.compute(
         ["V", "R0", "a", "<|B|>_vol", "<|F|>_vol", "<|grad(|B|^2)|/2mu0>_vol"]
     )
-    _, _, qs = plot_qs_error(
-        eq,
-        helicity=(1, eq.NFP),
-        rho=np.array([1.0]),
-        fT=False,
-        fB=False,
-        return_data=True,
-    )
+    _, qs = plot_qs_error_fsa(eq, rho=np.array([1.0]))
     print(
         f"{label:20s} V = {d['V']:8.3f}  R0/a = {d['R0'] / d['a']:6.3f}  "
         f"<|B|> = {d['<|B|>_vol']:7.4f}  "
         f"<|F|>/<|grad(p_B)|> = "
         f"{d['<|F|>_vol'] / d['<|grad(|B|^2)|/2mu0>_vol']:.3e}  "
-        f"f_qs(rho=1) = {np.asarray(qs['f_C']).ravel()[-1]:.3e}"
+        f"f_qs(rho=1) = {qs[-1]:.3e}"
     )

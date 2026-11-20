@@ -100,46 +100,69 @@ except FileNotFoundError:
     eq4.save("./equilibria/poincare-resolve-w7x-cold-solved.h5")
 
 fig, ax = plt.subplots(3, 3, figsize=(18, 18))
-for arow in ax:
-    for a in arow:
-        a.set_aspect("equal")
-for arow in ax:
-    for a in arow:
-        a.sharex(ax[1, 0])
-        a.sharey(ax[1, 0])
+for a in [*ax[:2, 1:].flatten(), *ax[2]]:
+    a.set_aspect("equal")
+    a.sharex(ax[1, 1])
+    a.sharey(ax[1, 1])
 levels = np.logspace(-6, -1, 30)
-plot_section(
-    eq0,
-    "|F|_normalized",
-    log=True,
-    levels=levels,
-    phi=np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True),
-    ax=ax[0],
-)
-plot_section(
-    eq_poin,
-    "|F|_normalized",
-    log=True,
-    levels=levels,
-    phi=np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True),
-    ax=ax[1],
-)
+phi = np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True)
+phi2 = np.array([0, np.pi / eq0.NFP])
+plot_section(eq0, "|F|_normalized", log=True, levels=levels, phi=phi2, ax=ax[0, 1:])
+plot_section(eq_poin, "|F|_normalized", log=True, levels=levels, phi=phi2, ax=ax[1, 1:])
 plot_comparison(
     [eq0, eq_poin],
     labels=["Original LCFS", "Poincaré Solved LCFS"],
     theta=0,
     rho=1,
-    phi=np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True),
+    phi=phi2,
     color=["black", "purple"],
-    ax=ax[1],
+    ax=ax[1, 1:],
     legend=False,
 )
-ax[1, 2].legend(*ax[1, 0].get_legend_handles_labels())
+ax[1, 2].legend(*ax[1, 1].get_legend_handles_labels())
+
+# surface (rho) and cross-section (zeta) averages and maxima of the normalized error
+rho = np.linspace(0.05, 1, 40)
+for eq_i, name, c in zip(
+    [eq0, eq_poin, eq3], ["LCFS", "Poincaré", "LCFS warm"], ["k", "r", "b"]
+):
+    zeta = np.linspace(0, 2 * np.pi / eq_i.NFP, 193)
+    theta = np.linspace(0, 2 * np.pi, 96, endpoint=False)
+    grid = LinearGrid(rho=rho, theta=theta, zeta=zeta, NFP=eq_i.NFP, sym=False)
+    data = eq_i.compute(["|F|", "sqrt(g)"], grid=grid)
+    norm = eq_i.compute("<|grad(|B|^2)|/2mu0>_vol")["<|grad(|B|^2)|/2mu0>_vol"]
+    F = grid.meshgrid_reshape(data["|F|"] / norm, "rtz")
+    w = grid.meshgrid_reshape(np.abs(data["sqrt(g)"]), "rtz")
+    zN = zeta * eq_i.NFP / (2 * np.pi)
+    for a, x, axes in zip(ax[:2, 0], [rho, zN], [(1, 2), (0, 1)]):
+        avg = (F * w).sum(axis=axes) / w.sum(axis=axes)
+        a.semilogy(x, avg, color=c, lw=3, label=f"{name} avg")
+        a.semilogy(x, F.max(axis=axes), color=c, lw=2, ls="--", label=f"{name} max")
+ax[0, 0].set_xlabel(r"$\rho$")
+ax[1, 0].set_xlabel(r"$\phi \cdot N_{FP}/2\pi$")
+for a in ax[:2, 0]:
+    a.set_ylabel(r"$|\mathbf{F}| / \langle |\nabla |B|^2 / (2\mu_0)| \rangle_{vol}$")
+for a in ax[:2, 0]:
+    # leave the bottom 25% of the log range free for the legend
+    lo, hi = np.log10(a.get_ylim())
+    a.set_ylim(10 ** (hi - (hi - lo) / 0.75), 10**hi)
+    # avg entries in the first column, max entries in the second
+    h, lab = a.get_legend_handles_labels()
+    a.legend(
+        h[0::2] + h[1::2],
+        lab[0::2] + lab[1::2],
+        fontsize=11,
+        framealpha=1.0,
+        ncol=2,
+        loc="lower center",
+        handlelength=1.5,
+        columnspacing=1.0,
+    )
 compare_kwargs = dict(
     labels=["Poincaré", "LCFS warm", "LCFS cold"],
     theta=6,
     rho=6,
-    phi=np.linspace(0, np.pi / eq0.NFP, 3, endpoint=True),
+    phi=phi,
     color=["black", "red", "blue"],
     lw=[3, 2, 1],
     ls=["-", "--", ":"],
@@ -178,8 +201,12 @@ for i, (a, axi) in enumerate(zip(ax[2], axins)):
         bbox=dict(fc="white", ec="none", alpha=0.85, pad=1),
     )
     a.indicate_inset_zoom(axi, edgecolor="gray")
-for a, tag in zip(ax[:, 0], ["a)", "b)", "c)"]):
-    a.text(-0.4, 0.5, tag, transform=a.transAxes, va="center", ha="center", fontsize=22)
+for a, tag, x in zip(
+    [ax[0, 0], ax[1, 0], ax[0, 1], ax[1, 1], ax[2, 0]],
+    ["a)", "b)", "c)", "d)", "e)"],
+    [-0.4] * 5,
+):
+    a.text(x, 0.5, tag, transform=a.transAxes, va="center", ha="center", fontsize=22)
 # drop the per-axes colorbars plot_section makes, use a single centered one instead
 for a in fig.axes:
     cbar = getattr(a, "_colorbar", None)
@@ -189,6 +216,11 @@ for a in ax.flatten():
     a.set_axes_locator(None)
 fig.canvas.draw()
 fig.set_layout_engine("none")  # freeze the tight layout, cax positions are absolute
+# align the line plots horizontally with the aspect-shrunk e) panel below them
+q = ax[2, 0].get_position()
+for a in ax[:2, 0]:
+    p = a.get_position()
+    a.set_position([q.x0, p.y0, q.width, p.height])
 exps = np.arange(np.log10(levels[0]), np.log10(levels[-1]) + 1).astype(int)
 box = [a.get_position() for a in ax.flatten()]
 y0, y1 = min(b.y0 for b in box), max(b.y1 for b in box)
@@ -197,22 +229,19 @@ height = 0.33 * (y1 - y0)
 cax = fig.add_axes(
     [max(b.x1 for b in box) + 0.01, 0.7 * (y0 + y1 - height), 0.012, height]
 )
-cbar = fig.colorbar(ax[0, 0].collections[0], cax=cax)
+cbar = fig.colorbar(ax[0, 1].collections[0], cax=cax)
 cbar.set_ticks(10.0**exps, labels=[f"$10^{{{e}}}$" for e in exps])
-phi = np.linspace(0, 2 * np.pi / eq0.NFP, 3, endpoint=False)
-for axi in ax:
-    for i in range(3):
-        axi[i].set_title(
-            "$\\phi \\cdot N_{{FP}}/2\\pi = {:.3f}$".format(
-                eq0.NFP * phi[i] / (2 * np.pi)
-            )
-        )
-fig.suptitle(
-    "$|\\mathbf{J} \\times \\mathbf{B} - \\nabla p|/\\langle "
-    + "|\\nabla |B|^{2}/(2\\mu_0)| \\rangle_{vol}$",
-    y=1.01,
+titles = "$\\phi \\cdot N_{{FP}}/2\\pi = {:.3f}$"
+for axi in ax[:2]:
+    for i in range(2):
+        axi[i + 1].set_title(titles.format(eq0.NFP * phi2[i] / (2 * np.pi)))
+for i in range(3):
+    ax[2, i].set_title(titles.format(eq0.NFP * phi[i] / (2 * np.pi)))
+cbar.set_label(
+    r"$|\mathbf{F}| / \langle |\nabla |B|^2 / (2\mu_0)| \rangle_{vol}$"
 )
-plt.savefig(f"{savedir}/w7x-force-e-1-e-6-v3.png", dpi=500, bbox_inches="tight")
+fig.savefig(f"{savedir}/w7x-force-e-1-e-6-v3.pdf", dpi=300, bbox_inches="tight")
+fig.savefig(f"{savedir}/w7x-force-e-1-e-6-v3.png", dpi=300, bbox_inches="tight")
 
 eq_all = [eq0, eq_poin, eq3, eq4]
 eq_names = ["LCFS", "Poincare", "Poincare and LCFS warm", "Poincare and LCFS cold"]

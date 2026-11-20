@@ -1,0 +1,33 @@
+DESC version=0.17.3+411.g8a54240a7c.
+Using JAX backend: jax version=0.7.2, jaxlib version=0.7.2, dtype=float64.
+Using device: NVIDIA GeForce RTX 4080 Laptop GPU (id=0), with 9.95 GB available memory.
+
+==================================
+Optimizing boundary modes M,N <= 1
+====================================
+Building objective: QS two-term hat
+Building objective: Generic
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 43.3 ms
+Timer: Objective build = 810 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 846 ms
+Timer: Objective build = 1.40 sec
+Timer: Objective build = 1.63 ms
+Timer: Eq Update LinearConstraintProjection build = 3.70 sec
+Timer: Proximal projection build = 38.9 sec
+Building objective: fixed LCFS R
+Building objective: fixed LCFS Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 1.17 sec
+Timer: LinearConstraintProjection build = 1.73 sec
+Number of parameters: 8
+Number of objectives: 1877
+Timer: Initializing the optimization = 41.9 sec
+
+Starting optimization
+Using method: proximal-lsq-exact

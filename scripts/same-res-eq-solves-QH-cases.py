@@ -19,12 +19,14 @@ eqp = load(f"./equilibria/poincare-QH-optimized-wqs3-war3-wvol0-wb1.h5")[-1]
 eq_qh = load(f"./equilibria/QH_L&P_2022_output.h5")
 eq_qh2 = load(f"./equilibria/QH_LCFS_(unnorm_f_qs)_output.h5")[-1]
 eq_qh3 = load(f"./equilibria/QH_LCFS_output.h5")[-1]
-eqs = [eqp, eq_qh, eq_qh2, eq_qh3]
+eq_qh4 = load(f"./equilibria/QH_LCFS_same_res_output.h5")[-1]
+eqs = [eqp, eq_qh, eq_qh2, eq_qh3, eq_qh4]
 labels = [
     "Poincare",
     "L&P_2022",
     "LCFS_(unnorm_f_qs)",
     "LCFS",
+    "LCFS_equivalent",
 ]
 
 eqs_same_res = eqs.copy()

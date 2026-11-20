@@ -10,7 +10,8 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import FormatStrFormatter
 
 from desc.io import load
-from desc.plotting import plot_boozer_surface, plot_qs_error, plot_1d, plot_comparison
+from desc.plotting import plot_boozer_surface, plot_1d, plot_comparison
+from qs_error import plot_qs_error_fsa
 from desc.backend import print_backend_info
 
 print_backend_info()
@@ -40,28 +41,9 @@ known = set(fig.axes)
 plot_boozer_surface(eqfam[-1], ax=ax[0, 0])
 for cax in set(fig.axes) - known:
     cax.yaxis.set_major_formatter(FormatStrFormatter("%.2f"))
-plot_qs_error(
-    eqfam[0],
-    helicity=(1, eqfam[-1].NFP),
-    log=True,
-    ax=ax[0, 1],
-    color=["blue"],
-    labels=[r"$f_{qs}$ initial"],
-    rho=10,
-    fT=False,
-    fB=False,
-)
-plot_qs_error(
-    eqfam[-1],
-    helicity=(1, eqfam[-1].NFP),
-    log=True,
-    ax=ax[0, 1],
-    color=["red"],
-    labels=[r"$f_{qs}$ optimized"],
-    rho=10,
-    fT=False,
-    fB=False,
-)
+plot_qs_error_fsa(eqfam[0], rho=10, ax=ax[0, 1], label="initial", color="blue")
+plot_qs_error_fsa(eqfam[-1], rho=10, ax=ax[0, 1], label="optimized", color="red")
+ax[0, 1].legend(loc="center right")
 plot_1d(eqfam[0], "iota", label="initial", color="blue", ax=ax[0, 2])
 plot_1d(eqfam[-1], "iota", label="optimized", color="red", ax=ax[0, 2])
 plot_comparison(
@@ -91,6 +73,11 @@ for _ in range(20):
         break
     w, h = fig.get_size_inches()
     fig.set_size_inches(w, h - dh / fig.dpi)
+fig.savefig(
+    f"{folder}/poincare-QH-optimized.pdf",
+    dpi=300,
+    bbox_inches="tight",
+)
 fig.savefig(
     f"{folder}/poincare-QH-optimized.png",
     dpi=300,
