@@ -36,8 +36,8 @@ from qs_error import make_qs, print_run_info, report
 print_run_info()
 
 L, M, N = 8, 8, 8
-w_qs = 6
-w_ar = 3
+w_qs = 1
+w_ar = 10
 w_vol = 0
 w_B = 1
 folder = "./equilibria"
@@ -71,7 +71,7 @@ print(f"dim_f = {probe.dim_f}, initial norm = {norm0:.4e}")
 
 def run_step(n, eqfam):
     eq = eqfam[-1]
-    objs = (make_qs(eq, w_qs / norm0, normalized=False),)
+    objs = (make_qs(eq, w_qs, normalized=False),)
     if w_ar > 0:
         objs += (AspectRatio(eq=eq, target=8, weight=w_ar, normalize=False),)
     if w_vol > 0:
