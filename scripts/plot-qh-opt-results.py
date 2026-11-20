@@ -73,13 +73,5 @@ for _ in range(20):
         break
     w, h = fig.get_size_inches()
     fig.set_size_inches(w, h - dh / fig.dpi)
-fig.savefig(
-    f"{folder}/poincare-QH-optimized.pdf",
-    dpi=300,
-    bbox_inches="tight",
-)
-fig.savefig(
-    f"{folder}/poincare-QH-optimized.png",
-    dpi=300,
-    bbox_inches="tight",
-)
+fig.savefig(f"{folder}/poincare-QH-optimized.pdf", dpi=300, bbox_inches="tight")
+fig.savefig(f"{folder}/poincare-QH-optimized.png", dpi=300, bbox_inches="tight")

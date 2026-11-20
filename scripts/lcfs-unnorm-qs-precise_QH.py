@@ -36,7 +36,7 @@ from qs_error import make_qs, print_run_info, report
 print_run_info()
 
 L, M, N = 8, 8, 8
-w_qs = 3
+w_qs = 6
 w_ar = 3
 w_vol = 0
 w_B = 1
