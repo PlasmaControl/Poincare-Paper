@@ -1,0 +1,1098 @@
+DESC repo: branch HEAD, commit 8a54240a7 2026-08-03 17:41:26 -0400 Merge branch 'master' into dp/poincare
+Paper repo: branch master, commit aaa3045 2026-11-23 15:25:13 -0500 new poincare variants check
+DESC version=0.17.3+411.g8a54240a7.
+Using JAX backend: jax version=0.9.2, jaxlib version=0.9.2, dtype=float64.
+Using device: NVIDIA A100-PCIE-40GB (id=0), with 40.00 GB available memory.
+dim_f = 1875, initial norm = 3.3307e+01
+
+===== optimizing section modes max(l,|m|) <= 2 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 65.6 ms
+Building objective: Generic
+Timer: Objective build = 268 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 1.30 sec
+Timer: Objective build = 2.42 sec
+Timer: Objective build = 2.83 ms
+Timer: Eq Update LinearConstraintProjection build = 4.66 sec
+Timer: Proximal projection build = 44.1 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 863 ms
+Timer: LinearConstraintProjection build = 2.13 sec
+Number of parameters: 6
+Number of objectives: 1877
+Timer: Initializing the optimization = 47.3 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 3.714e+01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          4.405e+00                                    2.336e+00   
+       1              2          6.663e-01      3.738e+00      1.530e-01      4.583e-01   
+       2              3          4.750e-01      1.912e-01      9.913e-03      2.983e-01   
+       3              4          4.079e-01      6.709e-02      1.406e-02      1.249e-01   
+       4              6          3.929e-01      1.503e-02      8.308e-03      1.869e-01   
+       5              8          3.468e-01      4.607e-02      8.332e-04      7.507e-02   
+       6             10          3.247e-01      2.208e-02      1.053e-02      3.514e-02   
+       7             11          2.904e-01      3.433e-02      1.830e-02      3.851e-02   
+       8             13          2.745e-01      1.590e-02      3.380e-04      1.751e-02   
+       9             14          2.718e-01      2.688e-03      7.562e-03      2.711e-02   
+      10             15          2.715e-01      3.303e-04      3.068e-03      3.100e-02   
+      11             16          2.709e-01      5.603e-04      1.928e-03      4.771e-03   
+      12             17          2.709e-01      1.256e-06      1.412e-04      2.106e-03   
+      13             18          2.709e-01      2.620e-05      1.330e-04      2.872e-04   
+Optimization terminated successfully.
+`ftol` condition satisfied. (ftol=1.00e-03)
+         Current function value: 2.709e-01
+         Total delta_x: 1.089e-01
+         Iterations: 13
+         Function evaluations: 18
+         Jacobian evaluations: 14
+Timer: Solution time = 1.72 min
+Timer: Avg time per step = 7.38 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      4.405e+00  -->   2.709e-01, 
+Maximum absolute QS two-term hat objective value:            2.355e+00  -->   6.903e-01 (Unknown)
+Minimum absolute QS two-term hat objective value:            9.465e-04  -->   3.463e-06 (Unknown)
+Average absolute QS two-term hat objective value:            6.079e-01  -->   1.345e-01 (Unknown)
+Aspect ratio:                                                7.995e+00  -->   8.002e+00 (dimensionless)
+Generic objective value:                                     1.260e+00  -->   1.252e+00 (T)
+Maximum absolute Force error:                                1.893e+01  -->   2.626e+01 (N)
+Minimum absolute Force error:                                3.514e-06  -->   5.062e-05 (N)
+Average absolute Force error:                                2.199e-01  -->   2.500e-01 (N)
+Maximum absolute Force error:                                2.562e-04  -->   3.553e-04 (normalized)
+Minimum absolute Force error:                                4.755e-11  -->   6.850e-10 (normalized)
+Average absolute Force error:                                2.976e-06  -->   3.383e-06 (normalized)
+Cross-section R error:                                       1.085e-19  -->   3.388e-21 (m)
+Cross-section Z error:                                       9.585e-21  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 2 wall time: 154.4 s
+
+===== optimizing section modes max(l,|m|) <= 3 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 67.3 ms
+Building objective: Generic
+Timer: Objective build = 247 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 104 ms
+Timer: Objective build = 121 ms
+Timer: Objective build = 1.86 ms
+Timer: Eq Update LinearConstraintProjection build = 102 ms
+Timer: Proximal projection build = 2.37 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 467 ms
+Timer: LinearConstraintProjection build = 1.93 sec
+Number of parameters: 10
+Number of objectives: 1877
+Timer: Initializing the optimization = 4.94 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 2.530e+01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          2.709e-01                                    8.449e-03   
+       1              4          2.691e-01      1.749e-03      2.371e-03      9.723e-02   
+       2              5          2.614e-01      7.715e-03      3.123e-03      3.987e-02   
+       3              6          2.574e-01      4.033e-03      1.038e-03      5.237e-02   
+       4              7          2.533e-01      4.087e-03      8.002e-04      1.113e-02   
+       5              8          2.488e-01      4.534e-03      2.633e-03      2.149e-02   
+       6              9          2.445e-01      4.251e-03      7.411e-03      7.681e-02   
+       7             10          2.253e-01      1.919e-02      1.063e-02      1.314e-02   
+       8             11          2.182e-01      7.133e-03      8.890e-03      9.134e-02   
+       9             12          1.991e-01      1.913e-02      6.037e-03      2.744e-02   
+      10             14          1.922e-01      6.865e-03      1.954e-03      1.124e-02   
+      11             15          1.896e-01      2.599e-03      9.344e-03      5.213e-02   
+      12             17          1.885e-01      1.087e-03      4.695e-03      2.020e-02   
+      13             18          1.881e-01      4.293e-04      3.173e-03      1.006e-02   
+      14             19          1.877e-01      4.353e-04      7.536e-04      4.271e-03   
+      15             20          1.873e-01      3.340e-04      4.409e-04      4.601e-03   
+      16             21          1.869e-01      4.606e-04      3.660e-04      5.158e-03   
+      17             22          1.865e-01      3.865e-04      7.974e-04      8.523e-03   
+      18             23          1.862e-01      2.858e-04      8.502e-04      8.952e-03   
+      19             25          1.860e-01      1.878e-04      5.468e-04      2.227e-03   
+      20             26          1.858e-01      1.636e-04      2.242e-04      4.180e-03   
+Optimization terminated successfully.
+`ftol` condition satisfied. (ftol=1.00e-03)
+         Current function value: 1.858e-01
+         Total delta_x: 2.573e-02
+         Iterations: 20
+         Function evaluations: 26
+         Jacobian evaluations: 21
+Timer: Solution time = 1.77 min
+Timer: Avg time per step = 5.05 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      2.709e-01  -->   1.858e-01, 
+Maximum absolute QS two-term hat objective value:            6.902e-01  -->   5.972e-01 (Unknown)
+Minimum absolute QS two-term hat objective value:            4.812e-05  -->   9.133e-05 (Unknown)
+Average absolute QS two-term hat objective value:            1.345e-01  -->   1.199e-01 (Unknown)
+Aspect ratio:                                                8.001e+00  -->   8.007e+00 (dimensionless)
+Generic objective value:                                     1.252e+00  -->   1.241e+00 (T)
+Maximum absolute Force error:                                2.626e+01  -->   3.984e+01 (N)
+Minimum absolute Force error:                                5.062e-05  -->   5.297e-05 (N)
+Average absolute Force error:                                2.500e-01  -->   3.864e-01 (N)
+Maximum absolute Force error:                                4.713e-04  -->   7.150e-04 (normalized)
+Minimum absolute Force error:                                9.086e-10  -->   9.508e-10 (normalized)
+Average absolute Force error:                                4.487e-06  -->   6.935e-06 (normalized)
+Cross-section R error:                                       2.486e-19  -->   0.000e+00 (m)
+Cross-section Z error:                                       3.405e-21  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 3 wall time: 112.0 s
+
+===== optimizing section modes max(l,|m|) <= 4 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 68.4 ms
+Building objective: Generic
+Timer: Objective build = 248 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 103 ms
+Timer: Objective build = 120 ms
+Timer: Objective build = 1.85 ms
+Timer: Eq Update LinearConstraintProjection build = 77.7 ms
+Timer: Proximal projection build = 2.08 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 329 ms
+Timer: LinearConstraintProjection build = 1.95 sec
+Number of parameters: 15
+Number of objectives: 1877
+Timer: Initializing the optimization = 4.54 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 2.220e+01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          1.860e-01                                    2.100e-02   
+       1              5          1.776e-01      8.360e-03      2.272e-03      2.066e-02   
+       2              6          1.670e-01      1.062e-02      7.096e-03      9.079e-02   
+       3              8          1.566e-01      1.041e-02      3.969e-03      1.533e-02   
+       4              9          1.493e-01      7.286e-03      5.889e-03      3.545e-02   
+       5             10          1.387e-01      1.061e-02      1.125e-02      5.652e-02   
+       6             12          1.341e-01      4.573e-03      1.002e-02      7.632e-02   
+       7             13          1.260e-01      8.084e-03      4.967e-03      3.588e-02   
+       8             14          1.223e-01      3.732e-03      6.812e-03      5.936e-02   
+       9             15          1.158e-01      6.505e-03      7.310e-03      6.259e-02   
+      10             17          1.135e-01      2.314e-03      2.569e-03      5.078e-02   
+      11             18          1.115e-01      1.942e-03      8.914e-04      2.733e-02   
+      12             19          1.112e-01      3.327e-04      1.408e-03      2.643e-02   
+      13             20          1.104e-01      7.821e-04      6.164e-04      1.216e-02   
+      14             21          1.101e-01      3.514e-04      2.326e-04      6.772e-03   
+      15             22          1.098e-01      2.969e-04      2.732e-04      5.251e-03   
+      16             23          1.095e-01      2.733e-04      3.520e-04      4.996e-03   
+      17             24          1.092e-01      2.578e-04      3.981e-04      4.977e-03   
+      18             25          1.090e-01      2.488e-04      4.160e-04      4.921e-03   
+      19             26          1.087e-01      2.428e-04      4.202e-04      4.830e-03   
+      20             27          1.085e-01      2.372e-04      4.236e-04      4.725e-03   
+      21             28          1.083e-01      2.312e-04      4.290e-04      4.622e-03   
+      22             29          1.081e-01      2.247e-04      4.375e-04      4.532e-03   
+      23             30          1.078e-01      2.175e-04      4.490e-04      4.460e-03   
+      24             31          1.076e-01      2.097e-04      4.634e-04      4.407e-03   
+      25             32          1.074e-01      2.015e-04      4.800e-04      4.372e-03   
+      26             33          1.072e-01      1.932e-04      4.983e-04      4.354e-03   
+      27             34          1.070e-01      1.852e-04      5.177e-04      4.347e-03   
+      28             35          1.069e-01      1.778e-04      5.380e-04      4.350e-03   
+      29             36          1.067e-01      1.713e-04      5.592e-04      4.360e-03   
+      30             37          1.065e-01      1.658e-04      5.817e-04      4.376e-03   
+      31             38          1.064e-01      1.614e-04      6.063e-04      4.399e-03   
+      32             39          1.062e-01      1.587e-04      6.311e-04      4.421e-03   
+      33             40          1.061e-01      1.574e-04      6.558e-04      4.442e-03   
+      34             41          1.059e-01      1.576e-04      6.804e-04      4.461e-03   
+      35             42          1.057e-01      1.591e-04      7.042e-04      4.476e-03   
+      36             43          1.056e-01      1.616e-04      7.263e-04      4.482e-03   
+      37             44          1.054e-01      1.649e-04      7.456e-04      4.475e-03   
+      38             45          1.052e-01      1.688e-04      7.612e-04      4.454e-03   
+      39             46          1.051e-01      1.727e-04      7.721e-04      4.414e-03   
+      40             47          1.049e-01      1.765e-04      7.777e-04      4.354e-03   
+      41             48          1.047e-01      1.800e-04      7.776e-04      4.275e-03   
+      42             49          1.045e-01      1.831e-04      7.721e-04      4.179e-03   
+      43             50          1.043e-01      1.857e-04      7.616e-04      4.069e-03   
+      44             51          1.042e-01      1.878e-04      7.470e-04      3.949e-03   
+      45             52          1.040e-01      1.897e-04      7.296e-04      3.823e-03   
+      46             53          1.038e-01      1.914e-04      7.105e-04      3.696e-03   
+      47             54          1.036e-01      1.928e-04      6.908e-04      3.571e-03   
+      48             55          1.034e-01      1.942e-04      6.715e-04      3.463e-03   
+      49             56          1.032e-01      1.955e-04      6.533e-04      3.420e-03   
+      50             57          1.030e-01      1.967e-04      6.369e-04      3.380e-03   
+Warning: Maximum number of iterations has been exceeded.
+         Current function value: 1.030e-01
+         Total delta_x: 8.641e-02
+         Iterations: 50
+         Function evaluations: 57
+         Jacobian evaluations: 51
+Timer: Solution time = 2.90 min
+Timer: Avg time per step = 3.42 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      1.860e-01  -->   1.030e-01, 
+Maximum absolute QS two-term hat objective value:            5.973e-01  -->   4.478e-01 (Unknown)
+Minimum absolute QS two-term hat objective value:            1.072e-04  -->   4.160e-05 (Unknown)
+Average absolute QS two-term hat objective value:            1.200e-01  -->   8.835e-02 (Unknown)
+Aspect ratio:                                                8.007e+00  -->   8.001e+00 (dimensionless)
+Generic objective value:                                     1.241e+00  -->   1.247e+00 (T)
+Maximum absolute Force error:                                3.984e+01  -->   5.362e+01 (N)
+Minimum absolute Force error:                                5.297e-05  -->   2.571e-04 (N)
+Average absolute Force error:                                3.864e-01  -->   7.546e-01 (N)
+Maximum absolute Force error:                                8.139e-04  -->   1.095e-03 (normalized)
+Minimum absolute Force error:                                1.082e-09  -->   5.251e-09 (normalized)
+Average absolute Force error:                                7.893e-06  -->   1.542e-05 (normalized)
+Cross-section R error:                                       1.086e-19  -->   0.000e+00 (m)
+Cross-section Z error:                                       2.593e-22  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 4 wall time: 179.8 s
+
+===== optimizing section modes max(l,|m|) <= 5 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 66.5 ms
+Building objective: Generic
+Timer: Objective build = 242 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 103 ms
+Timer: Objective build = 120 ms
+Timer: Objective build = 1.83 ms
+Timer: Eq Update LinearConstraintProjection build = 79.8 ms
+Timer: Proximal projection build = 2.19 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 465 ms
+Timer: LinearConstraintProjection build = 1.97 sec
+Number of parameters: 21
+Number of objectives: 1877
+Timer: Initializing the optimization = 4.82 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 1.488e+01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          1.030e-01                                    4.253e-02   
+       1              5          9.467e-02      8.341e-03      2.532e-03      6.625e-02   
+       2              6          9.217e-02      2.501e-03      1.169e-02      1.213e-01   
+       3              7          8.309e-02      9.078e-03      7.689e-03      3.493e-02   
+       4              8          7.837e-02      4.713e-03      4.099e-03      1.661e-02   
+       5              9          7.391e-02      4.463e-03      4.269e-03      3.264e-02   
+       6             10          7.172e-02      2.190e-03      1.799e-03      8.912e-02   
+       7             11          6.463e-02      7.095e-03      6.172e-03      2.635e-02   
+       8             13          6.182e-02      2.801e-03      1.974e-03      1.106e-02   
+       9             14          5.955e-02      2.273e-03      3.498e-03      8.850e-03   
+      10             15          5.648e-02      3.076e-03      1.473e-03      1.708e-02   
+      11             16          5.086e-02      5.612e-03      3.881e-03      2.166e-02   
+      12             17          5.043e-02      4.320e-04      4.956e-03      7.665e-02   
+      13             18          4.432e-02      6.112e-03      7.760e-03      5.355e-02   
+      14             20          3.920e-02      5.122e-03      4.688e-04      3.128e-02   
+      15             21          3.519e-02      4.011e-03      4.095e-03      3.013e-02   
+      16             22          3.165e-02      3.535e-03      1.313e-03      3.811e-02   
+      17             23          2.786e-02      3.789e-03      7.832e-03      6.598e-02   
+      18             24          2.269e-02      5.172e-03      7.096e-03      3.061e-02   
+      19             26          2.098e-02      1.707e-03      4.118e-03      1.090e-02   
+      20             28          2.041e-02      5.783e-04      2.148e-03      7.879e-03   
+      21             29          1.959e-02      8.166e-04      4.329e-03      1.419e-02   
+      22             30          1.888e-02      7.143e-04      3.190e-03      1.713e-02   
+      23             31          1.838e-02      4.954e-04      2.442e-03      1.129e-02   
+      24             32          1.791e-02      4.656e-04      1.422e-03      1.382e-02   
+      25             33          1.707e-02      8.412e-04      1.025e-03      1.250e-02   
+      26             34          1.659e-02      4.837e-04      9.454e-04      2.050e-02   
+      27             36          1.625e-02      3.418e-04      4.395e-04      4.321e-03   
+      28             37          1.619e-02      6.187e-05      4.916e-04      8.486e-03   
+      29             38          1.607e-02      1.149e-04      6.221e-04      8.184e-03   
+      30             39          1.601e-02      5.842e-05      6.370e-04      1.009e-02   
+      31             40          1.592e-02      9.141e-05      6.092e-04      1.070e-02   
+      32             41          1.577e-02      1.544e-04      4.594e-04      9.336e-03   
+      33             42          1.560e-02      1.659e-04      3.599e-04      7.777e-03   
+      34             43          1.540e-02      2.030e-04      9.196e-04      1.435e-02   
+      35             44          1.488e-02      5.143e-04      2.459e-03      1.578e-02   
+      36             45          1.409e-02      7.949e-04      3.979e-03      6.944e-03   
+      37             47          1.389e-02      2.006e-04      6.125e-04      1.592e-02   
+      38             48          1.359e-02      2.969e-04      1.484e-03      1.225e-02   
+      39             49          1.349e-02      9.995e-05      1.162e-03      1.583e-02   
+      40             51          1.324e-02      2.481e-04      2.490e-04      5.158e-03   
+      41             52          1.320e-02      4.763e-05      4.142e-04      9.875e-03   
+      42             53          1.302e-02      1.702e-04      2.574e-04      4.660e-03   
+      43             55          1.297e-02      5.136e-05      1.157e-04      4.044e-03   
+      44             56          1.294e-02      3.233e-05      1.783e-04      3.651e-03   
+      45             57          1.290e-02      3.898e-05      2.827e-04      2.798e-03   
+      46             58          1.288e-02      1.741e-05      3.643e-04      3.325e-03   
+      47             59          1.285e-02      3.257e-05      4.622e-04      2.314e-03   
+      48             60          1.284e-02      8.422e-06      5.257e-04      3.162e-03   
+      49             85          1.284e-02      0.000e+00      0.000e+00      3.162e-03   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 1.284e-02
+         Total delta_x: 6.040e-02
+         Iterations: 49
+         Function evaluations: 85
+         Jacobian evaluations: 49
+Timer: Solution time = 3.42 min
+Timer: Avg time per step = 4.11 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      1.030e-01  -->   1.284e-02, 
+Maximum absolute QS two-term hat objective value:            4.478e-01  -->   1.503e-01 (Unknown)
+Minimum absolute QS two-term hat objective value:            3.386e-05  -->   4.740e-05 (Unknown)
+Average absolute QS two-term hat objective value:            8.837e-02  -->   3.090e-02 (Unknown)
+Aspect ratio:                                                8.001e+00  -->   8.001e+00 (dimensionless)
+Generic objective value:                                     1.247e+00  -->   1.256e+00 (T)
+Maximum absolute Force error:                                5.362e+01  -->   9.646e+01 (N)
+Minimum absolute Force error:                                2.571e-04  -->   1.056e-04 (N)
+Average absolute Force error:                                7.546e-01  -->   1.346e+00 (N)
+Maximum absolute Force error:                                7.498e-04  -->   1.349e-03 (normalized)
+Minimum absolute Force error:                                3.594e-09  -->   1.476e-09 (normalized)
+Average absolute Force error:                                1.055e-05  -->   1.883e-05 (normalized)
+Cross-section R error:                                       4.813e-21  -->   0.000e+00 (m)
+Cross-section Z error:                                       1.762e-21  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 5 wall time: 211.4 s
+
+===== optimizing section modes max(l,|m|) <= 6 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 66.6 ms
+Building objective: Generic
+Timer: Objective build = 247 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 104 ms
+Timer: Objective build = 121 ms
+Timer: Objective build = 1.82 ms
+Timer: Eq Update LinearConstraintProjection build = 88.6 ms
+Timer: Proximal projection build = 2.09 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 336 ms
+Timer: LinearConstraintProjection build = 2.01 sec
+Number of parameters: 28
+Number of objectives: 1877
+Timer: Initializing the optimization = 4.64 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 7.388e+00
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          1.289e-02                                    5.197e-03   
+       1              6          1.276e-02      1.243e-04      1.131e-04      8.440e-03   
+       2              7          1.262e-02      1.414e-04      1.773e-04      7.324e-03   
+       3              8          1.241e-02      2.127e-04      3.457e-04      8.395e-03   
+       4              9          1.212e-02      2.913e-04      5.568e-04      1.546e-02   
+       5             10          1.166e-02      4.529e-04      3.762e-04      6.919e-03   
+       6             11          1.117e-02      4.954e-04      1.091e-03      8.660e-03   
+       7             12          1.052e-02      6.480e-04      3.461e-03      2.015e-02   
+       8             40          1.052e-02      0.000e+00      0.000e+00      2.015e-02   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 1.052e-02
+         Total delta_x: 4.393e-03
+         Iterations: 8
+         Function evaluations: 40
+         Jacobian evaluations: 8
+Timer: Solution time = 2.12 min
+Timer: Avg time per step = 14.1 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      1.289e-02  -->   1.052e-02, 
+Maximum absolute QS two-term hat objective value:            1.503e-01  -->   1.199e-01 (Unknown)
+Minimum absolute QS two-term hat objective value:            3.102e-05  -->   1.169e-05 (Unknown)
+Average absolute QS two-term hat objective value:            3.096e-02  -->   2.853e-02 (Unknown)
+Aspect ratio:                                                8.001e+00  -->   7.997e+00 (dimensionless)
+Generic objective value:                                     1.256e+00  -->   1.271e+00 (T)
+Maximum absolute Force error:                                9.646e+01  -->   1.069e+02 (N)
+Minimum absolute Force error:                                1.056e-04  -->   8.455e-05 (N)
+Average absolute Force error:                                1.346e+00  -->   1.263e+00 (N)
+Maximum absolute Force error:                                9.204e-04  -->   1.020e-03 (normalized)
+Minimum absolute Force error:                                1.007e-09  -->   8.068e-10 (normalized)
+Average absolute Force error:                                1.285e-05  -->   1.205e-05 (normalized)
+Cross-section R error:                                       2.647e-23  -->   0.000e+00 (m)
+Cross-section Z error:                                       1.059e-22  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 6 wall time: 133.0 s
+
+===== optimizing section modes max(l,|m|) <= 7 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 68.3 ms
+Building objective: Generic
+Timer: Objective build = 247 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 104 ms
+Timer: Objective build = 121 ms
+Timer: Objective build = 1.80 ms
+Timer: Eq Update LinearConstraintProjection build = 82.3 ms
+Timer: Proximal projection build = 3.90 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 454 ms
+Timer: LinearConstraintProjection build = 2.03 sec
+Number of parameters: 36
+Number of objectives: 1877
+Timer: Initializing the optimization = 6.58 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 9.018e+00
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          1.300e-02                                    5.806e-02   
+       1              4          1.171e-02      1.294e-03      1.035e-03      2.664e-02   
+       2              6          1.078e-02      9.310e-04      6.661e-04      3.597e-02   
+       3              7          9.641e-03      1.138e-03      7.265e-04      1.685e-02   
+       4              8          9.032e-03      6.086e-04      6.657e-04      1.330e-02   
+       5              9          8.562e-03      4.698e-04      6.219e-04      1.237e-02   
+       6             10          8.197e-03      3.656e-04      3.013e-04      1.031e-02   
+       7             11          7.916e-03      2.809e-04      3.460e-04      8.847e-03   
+       8             12          7.684e-03      2.320e-04      4.180e-04      7.914e-03   
+       9             13          7.494e-03      1.898e-04      4.261e-04      8.126e-03   
+      10             14          7.442e-03      5.206e-05      3.561e-04      1.515e-02   
+      11             15          7.284e-03      1.578e-04      3.435e-04      5.164e-03   
+      12             16          7.244e-03      4.006e-05      1.396e-04      8.149e-03   
+      13             17          7.182e-03      6.199e-05      1.343e-04      6.980e-03   
+      14             43          7.182e-03      0.000e+00      0.000e+00      6.980e-03   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 7.182e-03
+         Total delta_x: 2.503e-03
+         Iterations: 14
+         Function evaluations: 43
+         Jacobian evaluations: 14
+Timer: Solution time = 2.67 min
+Timer: Avg time per step = 10.7 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      1.300e-02  -->   7.182e-03, 
+Maximum absolute QS two-term hat objective value:            1.318e-01  -->   1.069e-01 (Unknown)
+Minimum absolute QS two-term hat objective value:            1.194e-05  -->   2.396e-05 (Unknown)
+Average absolute QS two-term hat objective value:            3.232e-02  -->   2.427e-02 (Unknown)
+Aspect ratio:                                                7.994e+00  -->   7.998e+00 (dimensionless)
+Generic objective value:                                     1.271e+00  -->   1.255e+00 (T)
+Maximum absolute Force error:                                1.069e+02  -->   9.213e+01 (N)
+Minimum absolute Force error:                                8.455e-05  -->   3.536e-04 (N)
+Average absolute Force error:                                1.263e+00  -->   1.296e+00 (N)
+Maximum absolute Force error:                                1.058e-03  -->   9.119e-04 (normalized)
+Minimum absolute Force error:                                8.369e-10  -->   3.500e-09 (normalized)
+Average absolute Force error:                                1.250e-05  -->   1.283e-05 (normalized)
+Cross-section R error:                                       3.390e-21  -->   3.390e-21 (m)
+Cross-section Z error:                                       3.416e-21  -->   3.388e-21 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 7 wall time: 168.0 s
+
+===== optimizing section modes max(l,|m|) <= 8 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 69.7 ms
+Building objective: Generic
+Timer: Objective build = 250 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 105 ms
+Timer: Objective build = 122 ms
+Timer: Objective build = 1.82 ms
+Timer: Eq Update LinearConstraintProjection build = 82.2 ms
+Timer: Proximal projection build = 4.54 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 474 ms
+Timer: LinearConstraintProjection build = 2.02 sec
+Number of parameters: 45
+Number of objectives: 1877
+Timer: Initializing the optimization = 7.25 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 8.283e+00
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          9.250e-03                                    5.705e-02   
+       1              5          7.190e-03      2.060e-03      1.682e-03      9.102e-03   
+       2              6          6.922e-03      2.678e-04      3.602e-03      1.862e-02   
+       3              7          6.748e-03      1.746e-04      2.197e-03      3.784e-02   
+       4              8          5.789e-03      9.587e-04      1.903e-04      3.523e-03   
+       5             10          5.730e-03      5.936e-05      1.369e-04      8.529e-03   
+       6             11          5.649e-03      8.025e-05      1.429e-04      1.390e-02   
+       7             12          5.499e-03      1.500e-04      1.160e-04      1.238e-02   
+       8             13          5.471e-03      2.822e-05      3.239e-04      2.267e-02   
+       9             14          5.184e-03      2.871e-04      1.160e-04      6.557e-03   
+      10             15          5.146e-03      3.777e-05      1.114e-04      1.275e-02   
+      11             16          5.045e-03      1.013e-04      1.049e-04      1.123e-02   
+      12             18          4.989e-03      5.618e-05      3.202e-05      3.798e-03   
+      13             19          4.961e-03      2.772e-05      2.269e-05      3.676e-03   
+      14             20          4.939e-03      2.187e-05      5.371e-05      3.205e-03   
+      15             45          4.939e-03      0.000e+00      0.000e+00      3.205e-03   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 4.939e-03
+         Total delta_x: 7.953e-03
+         Iterations: 15
+         Function evaluations: 45
+         Jacobian evaluations: 15
+Timer: Solution time = 1.81 min
+Timer: Avg time per step = 6.81 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      9.250e-03  -->   4.939e-03, 
+Maximum absolute QS two-term hat objective value:            1.158e-01  -->   8.629e-02 (Unknown)
+Minimum absolute QS two-term hat objective value:            8.348e-07  -->   3.490e-06 (Unknown)
+Average absolute QS two-term hat objective value:            2.598e-02  -->   2.030e-02 (Unknown)
+Aspect ratio:                                                7.984e+00  -->   8.001e+00 (dimensionless)
+Generic objective value:                                     1.252e+00  -->   1.263e+00 (T)
+Maximum absolute Force error:                                9.213e+01  -->   8.391e+01 (N)
+Minimum absolute Force error:                                3.536e-04  -->   1.498e-04 (N)
+Average absolute Force error:                                1.296e+00  -->   1.259e+00 (N)
+Maximum absolute Force error:                                8.660e-04  -->   7.888e-04 (normalized)
+Minimum absolute Force error:                                3.324e-09  -->   1.408e-09 (normalized)
+Average absolute Force error:                                1.219e-05  -->   1.183e-05 (normalized)
+Cross-section R error:                                       2.134e-22  -->   2.187e-22 (m)
+Cross-section Z error:                                       8.491e-22  -->   2.541e-21 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 8 wall time: 117.1 s
+
+===== optimizing section modes max(l,|m|) <= 9 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 68.5 ms
+Building objective: Generic
+Timer: Objective build = 247 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 103 ms
+Timer: Objective build = 120 ms
+Timer: Objective build = 1.85 ms
+Timer: Eq Update LinearConstraintProjection build = 82.7 ms
+Timer: Proximal projection build = 2.34 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 475 ms
+Timer: LinearConstraintProjection build = 2.05 sec
+Number of parameters: 55
+Number of objectives: 1877
+Timer: Initializing the optimization = 5.07 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 8.859e+00
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          4.974e-03                                    5.071e-03   
+       1              6          4.870e-03      1.041e-04      5.988e-05      1.177e-02   
+       2              7          4.665e-03      2.049e-04      7.288e-05      8.110e-03   
+       3              8          4.562e-03      1.031e-04      2.838e-04      2.022e-02   
+       4              9          4.330e-03      2.322e-04      5.887e-04      2.034e-02   
+       5             10          4.258e-03      7.181e-05      4.556e-04      2.471e-02   
+       6             11          3.920e-03      3.379e-04      7.093e-05      1.474e-03   
+       7             13          3.907e-03      1.280e-05      2.809e-05      4.004e-03   
+       8             14          3.885e-03      2.191e-05      5.967e-05      5.631e-03   
+       9             15          3.866e-03      1.951e-05      6.314e-05      8.726e-03   
+      10             16          3.816e-03      5.015e-05      1.068e-04      7.283e-03   
+      11             17          3.789e-03      2.698e-05      1.991e-04      1.020e-02   
+      12             42          3.789e-03      0.000e+00      0.000e+00      1.020e-02   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 3.789e-03
+         Total delta_x: 1.862e-03
+         Iterations: 12
+         Function evaluations: 42
+         Jacobian evaluations: 12
+Timer: Solution time = 3.61 min
+Timer: Avg time per step = 16.6 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      4.974e-03  -->   3.789e-03, 
+Maximum absolute QS two-term hat objective value:            8.682e-02  -->   6.735e-02 (Unknown)
+Minimum absolute QS two-term hat objective value:            2.963e-06  -->   1.919e-05 (Unknown)
+Average absolute QS two-term hat objective value:            2.042e-02  -->   1.757e-02 (Unknown)
+Aspect ratio:                                                8.000e+00  -->   8.001e+00 (dimensionless)
+Generic objective value:                                     1.263e+00  -->   1.263e+00 (T)
+Maximum absolute Force error:                                8.391e+01  -->   7.963e+01 (N)
+Minimum absolute Force error:                                1.498e-04  -->   4.002e-04 (N)
+Average absolute Force error:                                1.259e+00  -->   1.195e+00 (N)
+Maximum absolute Force error:                                8.165e-04  -->   7.749e-04 (normalized)
+Minimum absolute Force error:                                1.458e-09  -->   3.895e-09 (normalized)
+Average absolute Force error:                                1.225e-05  -->   1.162e-05 (normalized)
+Cross-section R error:                                       5.294e-23  -->   1.588e-22 (m)
+Cross-section Z error:                                       9.790e-22  -->   1.390e-21 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 9 wall time: 222.8 s
+
+===== optimizing section modes max(l,|m|) <= 10 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 68.3 ms
+Building objective: Generic
+Timer: Objective build = 249 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 104 ms
+Timer: Objective build = 121 ms
+Timer: Objective build = 1.82 ms
+Timer: Eq Update LinearConstraintProjection build = 89.8 ms
+Timer: Proximal projection build = 7.56 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 456 ms
+Timer: LinearConstraintProjection build = 2.09 sec
+Number of parameters: 66
+Number of objectives: 1877
+Timer: Initializing the optimization = 10.3 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 8.602e+00
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          8.523e-03                                    6.707e-02   
+       1              6          5.892e-03      2.631e-03      2.224e-04      2.896e-02   
+       2              8          5.540e-03      3.515e-04      1.045e-04      1.369e-02   
+       3              9          5.401e-03      1.399e-04      7.333e-05      1.416e-02   
+       4             10          5.308e-03      9.265e-05      6.838e-05      1.285e-02   
+       5             11          5.192e-03      1.162e-04      6.281e-05      1.074e-02   
+       6             12          5.076e-03      1.155e-04      5.746e-05      8.574e-03   
+       7             37          5.076e-03      0.000e+00      0.000e+00      8.574e-03   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 5.076e-03
+         Total delta_x: 4.804e-04
+         Iterations: 7
+         Function evaluations: 37
+         Jacobian evaluations: 7
+Timer: Solution time = 1.94 min
+Timer: Avg time per step = 14.6 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      8.523e-03  -->   5.076e-03, 
+Maximum absolute QS two-term hat objective value:            1.141e-01  -->   7.677e-02 (Unknown)
+Minimum absolute QS two-term hat objective value:            7.237e-05  -->   1.437e-06 (Unknown)
+Average absolute QS two-term hat objective value:            2.614e-02  -->   2.042e-02 (Unknown)
+Aspect ratio:                                                8.007e+00  -->   8.002e+00 (dimensionless)
+Generic objective value:                                     1.265e+00  -->   1.254e+00 (T)
+Maximum absolute Force error:                                7.963e+01  -->   7.164e+01 (N)
+Minimum absolute Force error:                                4.002e-04  -->   2.034e-04 (N)
+Average absolute Force error:                                1.195e+00  -->   1.207e+00 (N)
+Maximum absolute Force error:                                7.843e-04  -->   7.055e-04 (normalized)
+Minimum absolute Force error:                                3.942e-09  -->   2.003e-09 (normalized)
+Average absolute Force error:                                1.176e-05  -->   1.188e-05 (normalized)
+Cross-section R error:                                       0.000e+00  -->   0.000e+00 (m)
+Cross-section Z error:                                       0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 10 wall time: 128.0 s
+
+===== optimizing section modes max(l,|m|) <= 11 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 68.7 ms
+Building objective: Generic
+Timer: Objective build = 246 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 103 ms
+Timer: Objective build = 120 ms
+Timer: Objective build = 1.84 ms
+Timer: Eq Update LinearConstraintProjection build = 89.3 ms
+Timer: Proximal projection build = 2.22 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 312 ms
+Timer: LinearConstraintProjection build = 1.50 sec
+Number of parameters: 78
+Number of objectives: 1877
+Timer: Initializing the optimization = 4.26 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 8.932e+00
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          5.106e-03                                    1.436e-02   
+       1              6          4.544e-03      5.621e-04      5.749e-05      9.025e-03   
+       2             32          4.544e-03      0.000e+00      0.000e+00      9.025e-03   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 4.544e-03
+         Total delta_x: 5.749e-05
+         Iterations: 2
+         Function evaluations: 32
+         Jacobian evaluations: 2
+Timer: Solution time = 3.42 min
+Timer: Avg time per step = 1.14 min
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      5.106e-03  -->   4.544e-03, 
+Maximum absolute QS two-term hat objective value:            7.671e-02  -->   7.379e-02 (Unknown)
+Minimum absolute QS two-term hat objective value:            8.435e-06  -->   1.645e-05 (Unknown)
+Average absolute QS two-term hat objective value:            2.049e-02  -->   1.925e-02 (Unknown)
+Aspect ratio:                                                8.002e+00  -->   8.002e+00 (dimensionless)
+Generic objective value:                                     1.254e+00  -->   1.256e+00 (T)
+Maximum absolute Force error:                                7.164e+01  -->   6.835e+01 (N)
+Minimum absolute Force error:                                2.034e-04  -->   9.111e-05 (N)
+Average absolute Force error:                                1.207e+00  -->   1.204e+00 (N)
+Maximum absolute Force error:                                6.926e-04  -->   6.608e-04 (normalized)
+Minimum absolute Force error:                                1.967e-09  -->   8.808e-10 (normalized)
+Average absolute Force error:                                1.167e-05  -->   1.164e-05 (normalized)
+Cross-section R error:                                       5.294e-23  -->   0.000e+00 (m)
+Cross-section Z error:                                       0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 11 wall time: 210.4 s
+
+===== optimizing section modes max(l,|m|) <= 12 =====
+
+Building objective: QS two-term hat
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 66.9 ms
+Building objective: Generic
+Timer: Objective build = 246 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 104 ms
+Timer: Objective build = 121 ms
+Timer: Objective build = 1.84 ms
+Timer: Eq Update LinearConstraintProjection build = 82.1 ms
+Timer: Proximal projection build = 8.26 sec
+Building objective: fixed cross-section R
+Building objective: fixed cross-section Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 117 ms
+Timer: LinearConstraintProjection build = 1.26 sec
+Number of parameters: 91
+Number of objectives: 1877
+Timer: Initializing the optimization = 9.84 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 1.038e+01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          6.342e-03                                    3.465e-02   
+       1              6          5.128e-03      1.215e-03      1.074e-04      1.513e-02   
+       2              7          4.699e-03      4.294e-04      5.709e-04      1.316e-02   
+       3              8          4.293e-03      4.051e-04      5.851e-04      1.192e-02   
+       4             10          4.092e-03      2.010e-04      2.220e-04      4.782e-03   
+       5             11          3.915e-03      1.773e-04      3.186e-04      5.605e-03   
+       6             13          3.816e-03      9.867e-05      2.071e-04      4.479e-03   
+       7             14          3.711e-03      1.050e-04      2.827e-04      8.230e-03   
+       8             15          3.596e-03      1.156e-04      4.319e-04      8.258e-03   
+       9             16          3.493e-03      1.023e-04      5.223e-04      8.255e-03   
+      10             17          3.401e-03      9.281e-05      5.689e-04      8.472e-03   
+      11             19          3.336e-03      6.480e-05      2.470e-04      4.769e-04   
+      12             20          3.307e-03      2.907e-05      2.547e-04      6.015e-03   
+      13             21          3.254e-03      5.321e-05      2.835e-04      4.236e-03   
+      14             23          3.227e-03      2.654e-05      1.571e-04      1.876e-03   
+      15             24          3.200e-03      2.747e-05      1.519e-04      5.006e-03   
+      16             25          3.157e-03      4.293e-05      1.443e-04      3.576e-03   
+      17             27          3.136e-03      2.097e-05      7.291e-05      1.691e-03   
+      18             28          3.108e-03      2.760e-05      5.632e-05      3.936e-03   
+      19             29          3.072e-03      3.620e-05      5.525e-05      2.948e-03   
+      20             31          3.054e-03      1.770e-05      3.123e-05      1.529e-03   
+      21             32          3.040e-03      1.412e-05      2.624e-05      1.729e-03   
+      22             33          3.025e-03      1.488e-05      2.653e-05      1.594e-03   
+      23             34          3.010e-03      1.482e-05      2.716e-05      1.574e-03   
+      24             35          2.995e-03      1.497e-05      2.750e-05      1.529e-03   
+      25             36          2.980e-03      1.508e-05      2.786e-05      1.499e-03   
+      26             37          2.965e-03      1.521e-05      2.826e-05      1.465e-03   
+      27             38          2.934e-03      3.084e-05      7.196e-05      2.515e-03   
+      28             40          2.916e-03      1.777e-05      2.678e-05      9.968e-04   
+      29             41          2.887e-03      2.971e-05      7.927e-05      2.594e-03   
+      30             43          2.868e-03      1.884e-05      2.603e-05      8.291e-04   
+      31             44          2.838e-03      2.950e-05      8.790e-05      2.682e-03   
+      32             46          2.819e-03      1.982e-05      2.806e-05      8.145e-04   
+      33             47          2.789e-03      2.981e-05      9.992e-05      2.723e-03   
+      34             49          2.768e-03      2.066e-05      3.508e-05      9.910e-04   
+      35             50          2.738e-03      3.054e-05      1.211e-04      2.842e-03   
+      36             52          2.716e-03      2.130e-05      5.221e-05      1.144e-03   
+      37             53          2.685e-03      3.145e-05      1.561e-04      2.922e-03   
+      38             55          2.663e-03      2.200e-05      7.493e-05      1.297e-03   
+      39             56          2.651e-03      1.230e-05      1.944e-04      5.833e-03   
+      40             57          2.585e-03      6.518e-05      1.694e-04      2.615e-03   
+      41             59          2.561e-03      2.482e-05      1.435e-04      1.231e-03   
+      42             60          2.524e-03      3.629e-05      2.591e-04      2.383e-03   
+      43             62          2.500e-03      2.402e-05      1.474e-04      1.383e-03   
+      44             63          2.464e-03      3.625e-05      3.099e-04      2.451e-03   
+      45             65          2.440e-03      2.391e-05      1.625e-04      1.344e-03   
+      46             66          2.405e-03      3.521e-05      3.316e-04      2.661e-03   
+      47             68          2.382e-03      2.331e-05      1.666e-04      1.273e-03   
+      48             69          2.348e-03      3.311e-05      3.353e-04      2.964e-03   
+      49             71          2.326e-03      2.255e-05      1.607e-04      1.235e-03   
+      50             72          2.296e-03      3.008e-05      3.249e-04      3.292e-03   
+Warning: Maximum number of iterations has been exceeded.
+         Current function value: 2.296e-03
+         Total delta_x: 2.699e-03
+         Iterations: 50
+         Function evaluations: 72
+         Jacobian evaluations: 51
+Timer: Solution time = 3.67 min
+Timer: Avg time per step = 4.32 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      6.342e-03  -->   2.296e-03, 
+Maximum absolute QS two-term hat objective value:            9.714e-02  -->   6.088e-02 (Unknown)
+Minimum absolute QS two-term hat objective value:            2.616e-05  -->   2.255e-05 (Unknown)
+Average absolute QS two-term hat objective value:            2.277e-02  -->   1.337e-02 (Unknown)
+Aspect ratio:                                                7.999e+00  -->   8.000e+00 (dimensionless)
+Generic objective value:                                     1.255e+00  -->   1.262e+00 (T)
+Maximum absolute Force error:                                6.835e+01  -->   7.485e+01 (N)
+Minimum absolute Force error:                                9.111e-05  -->   8.162e-05 (N)
+Average absolute Force error:                                1.204e+00  -->   1.043e+00 (N)
+Maximum absolute Force error:                                6.623e-04  -->   7.253e-04 (normalized)
+Minimum absolute Force error:                                8.828e-10  -->   7.908e-10 (normalized)
+Average absolute Force error:                                1.167e-05  -->   1.011e-05 (normalized)
+Cross-section R error:                                       0.000e+00  -->   0.000e+00 (m)
+Cross-section Z error:                                       0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 12 wall time: 230.9 s
+
+Total optimization wall time: 1867.7 s
+step 0    V =    0.307  R0/a =  7.995  <|B|> =  1.2599  <|F|>_n = 1.517e-05  f_qs = [0.49   0.5165 0.5539]
+step 1    V =    0.339  R0/a =  8.002  <|B|> =  1.2515  <|F|>_n = 1.826e-05  f_qs = [0.0972 0.1312 0.1678]
+step 2    V =    0.357  R0/a =  8.007  <|B|> =  1.2412  <|F|>_n = 2.816e-05  f_qs = [0.089  0.1195 0.1553]
+step 3    V =    0.321  R0/a =  8.001  <|B|> =  1.2469  <|F|>_n = 5.668e-05  f_qs = [0.0735 0.0892 0.112 ]
+step 4    V =    0.285  R0/a =  8.001  <|B|> =  1.2556  <|F|>_n = 1.095e-04  f_qs = [0.0262 0.0277 0.0398]
+step 5    V =    0.284  R0/a =  7.997  <|B|> =  1.2712  <|F|>_n = 1.006e-04  f_qs = [0.0231 0.0266 0.0374]
+step 6    V =    0.286  R0/a =  7.998  <|B|> =  1.2552  <|F|>_n = 1.051e-04  f_qs = [0.0203 0.0224 0.0322]
+step 7    V =    0.287  R0/a =  8.001  <|B|> =  1.2630  <|F|>_n = 1.011e-04  f_qs = [0.0181 0.0187 0.0254]
+step 8    V =    0.288  R0/a =  8.001  <|B|> =  1.2632  <|F|>_n = 9.533e-05  f_qs = [0.0158 0.0159 0.0221]
+step 9    V =    0.290  R0/a =  8.002  <|B|> =  1.2537  <|F|>_n = 9.694e-05  f_qs = [0.0162 0.0188 0.0263]
+step 10   V =    0.289  R0/a =  8.002  <|B|> =  1.2556  <|F|>_n = 9.667e-05  f_qs = [0.0155 0.0175 0.0253]
+step 11   V =    0.288  R0/a =  8.000  <|B|> =  1.2624  <|F|>_n = 8.331e-05  f_qs = [0.0118 0.0122 0.0164]
