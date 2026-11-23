@@ -28,6 +28,15 @@ labels = [
     "LCFS",
     "LCFS_equivalent",
 ]
+# alternative Poincare runs from poincare-qh-optimization-*.py
+for name in [
+    "wqs3-war3-wvol0-wb1-tight-solve",
+    "wqs3-war3-wvol0-wb1-no-ess",
+    "wqs3-war3-wvol0-wb1-maxiter200",
+    "wqs4-war3-wvol0-wb1",
+]:
+    eqs.append(load(f"./equilibria/poincare-QH-optimized-{name}.h5")[-1])
+    labels.append(f"Poincare_{name}")
 
 eqs_same_res = eqs.copy()
 for eq, label in zip(eqs_same_res, labels):

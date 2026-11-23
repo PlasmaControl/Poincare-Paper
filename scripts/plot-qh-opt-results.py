@@ -26,8 +26,11 @@ plt.rcParams.update(
     }
 )
 
-folder = "../figures"
-eqfam = load("./equilibria/poincare-QH-optimized-wqs3-war3-wvol0-wb1.h5")
+# optional argument: name of a variant run, e.g. wqs3-war3-wvol0-wb1-no-ess
+name = sys.argv[1] if len(sys.argv) > 1 else "wqs3-war3-wvol0-wb1"
+folder = "../figures" if len(sys.argv) == 1 else "../extra-images"
+suffix = "" if len(sys.argv) == 1 else f"-{name}"
+eqfam = load(f"./equilibria/poincare-QH-optimized-{name}.h5")
 
 fig, ax = plt.subplots(2, 3, figsize=(18, 12))
 # bottom row mimics what plot_surfaces does when it makes its own axes
@@ -73,5 +76,5 @@ for _ in range(20):
         break
     w, h = fig.get_size_inches()
     fig.set_size_inches(w, h - dh / fig.dpi)
-fig.savefig(f"{folder}/poincare-QH-optimized.pdf", dpi=300, bbox_inches="tight")
-fig.savefig(f"{folder}/poincare-QH-optimized.png", dpi=300, bbox_inches="tight")
+fig.savefig(f"{folder}/poincare-QH-optimized{suffix}.pdf", dpi=300, bbox_inches="tight")
+fig.savefig(f"{folder}/poincare-QH-optimized{suffix}.png", dpi=300, bbox_inches="tight")
