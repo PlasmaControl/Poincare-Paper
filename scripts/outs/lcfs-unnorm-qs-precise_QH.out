@@ -274,3 +274,453 @@ Trust Radius Decrease Threshold    : 2.500e-01
       29             36          9.903e-03      1.249e-04      6.410e-03      3.552e-02   
       30             37          8.945e-03      9.580e-04      1.136e-03      4.976e-03   
       31             38          8.725e-03      2.208e-04      1.870e-03      6.611e-03   
+      32             44          8.723e-03      1.920e-06      2.205e-06      1.578e-03   
+      33             66          8.723e-03      0.000e+00      0.000e+00      1.578e-03   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 8.723e-03
+         Total delta_x: 1.028e-01
+         Iterations: 33
+         Function evaluations: 66
+         Jacobian evaluations: 33
+Timer: Solution time = 1.78 min
+Timer: Avg time per step = 3.15 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      6.009e-02  -->   8.723e-03, 
+Maximum absolute Quasi-symmetry (1,4) two-term error:        1.136e-01  -->   4.136e-02 (T^3)
+Minimum absolute Quasi-symmetry (1,4) two-term error:        1.443e-05  -->   1.523e-06 (T^3)
+Average absolute Quasi-symmetry (1,4) two-term error:        8.537e-03  -->   3.740e-03 (T^3)
+Aspect ratio:                                                8.000e+00  -->   8.000e+00 (dimensionless)
+Generic objective value:                                     9.867e-01  -->   1.164e+00 (T)
+Maximum absolute Force error:                                2.657e+02  -->   2.062e+02 (N)
+Minimum absolute Force error:                                3.143e-03  -->   1.171e-03 (N)
+Average absolute Force error:                                8.088e+00  -->   5.110e+00 (N)
+Maximum absolute Force error:                                3.644e-04  -->   2.827e-04 (normalized)
+Minimum absolute Force error:                                4.310e-09  -->   1.605e-09 (normalized)
+Average absolute Force error:                                1.109e-05  -->   7.008e-06 (normalized)
+LCFS R error:                                                0.000e+00  -->   0.000e+00 (m)
+LCFS Z error:                                                0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 3 wall time: 112.7 s
+
+===== optimizing boundary modes max(|m|,|n|) <= 4 =====
+
+Building objective: QS two-term
+Precomputing transforms
+Timer: Precomputing transforms = 87.7 ms
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 42.3 ms
+Building objective: Generic
+Timer: Objective build = 182 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 96.5 ms
+Timer: Objective build = 111 ms
+Timer: Objective build = 1.82 ms
+Timer: Eq Update LinearConstraintProjection build = 127 ms
+Timer: Proximal projection build = 2.50 sec
+Building objective: fixed LCFS R
+Building objective: fixed LCFS Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 474 ms
+Timer: LinearConstraintProjection build = 1.98 sec
+Number of parameters: 80
+Number of objectives: 1685
+Timer: Initializing the optimization = 5.16 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 5.000e-01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          8.742e-03                                    1.031e-02   
+       1              2          7.424e-03      1.317e-03      4.908e-04      2.947e-03   
+       2              3          6.599e-03      8.257e-04      1.553e-03      6.359e-03   
+       3              5          6.318e-03      2.809e-04      8.406e-04      1.809e-03   
+       4             32          6.318e-03      0.000e+00      0.000e+00      1.809e-03   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 6.318e-03
+         Total delta_x: 2.774e-03
+         Iterations: 4
+         Function evaluations: 32
+         Jacobian evaluations: 4
+Timer: Solution time = 54.6 sec
+Timer: Avg time per step = 10.9 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      8.742e-03  -->   6.318e-03, 
+Maximum absolute Quasi-symmetry (1,4) two-term error:        4.143e-02  -->   4.399e-02 (T^3)
+Minimum absolute Quasi-symmetry (1,4) two-term error:        3.546e-06  -->   1.726e-06 (T^3)
+Average absolute Quasi-symmetry (1,4) two-term error:        3.749e-03  -->   2.767e-03 (T^3)
+Aspect ratio:                                                8.000e+00  -->   8.000e+00 (dimensionless)
+Generic objective value:                                     1.164e+00  -->   1.167e+00 (T)
+Maximum absolute Force error:                                2.062e+02  -->   3.352e+02 (N)
+Minimum absolute Force error:                                1.171e-03  -->   4.355e-06 (N)
+Average absolute Force error:                                5.110e+00  -->   3.530e+00 (N)
+Maximum absolute Force error:                                6.758e-04  -->   1.099e-03 (normalized)
+Minimum absolute Force error:                                3.838e-09  -->   1.428e-11 (normalized)
+Average absolute Force error:                                1.675e-05  -->   1.157e-05 (normalized)
+LCFS R error:                                                0.000e+00  -->   0.000e+00 (m)
+LCFS Z error:                                                0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 4 wall time: 60.4 s
+
+===== optimizing boundary modes max(|m|,|n|) <= 5 =====
+
+Building objective: QS two-term
+Precomputing transforms
+Timer: Precomputing transforms = 87.9 ms
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 42.9 ms
+Building objective: Generic
+Timer: Objective build = 183 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 96.4 ms
+Timer: Objective build = 111 ms
+Timer: Objective build = 1.81 ms
+Timer: Eq Update LinearConstraintProjection build = 129 ms
+Timer: Proximal projection build = 1.92 sec
+Building objective: fixed LCFS R
+Building objective: fixed LCFS Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 480 ms
+Timer: LinearConstraintProjection build = 2.01 sec
+Number of parameters: 120
+Number of objectives: 1685
+Timer: Initializing the optimization = 4.62 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 5.000e-01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          6.321e-03                                    5.721e-03   
+       1              4          6.241e-03      7.928e-05      5.168e-05      4.507e-03   
+       2             29          6.241e-03      0.000e+00      0.000e+00      4.507e-03   
+Warning: A bad approximation caused failure to predict improvement.
+         Current function value: 6.241e-03
+         Total delta_x: 5.168e-05
+         Iterations: 2
+         Function evaluations: 29
+         Jacobian evaluations: 2
+Timer: Solution time = 56.3 sec
+Timer: Avg time per step = 18.7 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      6.321e-03  -->   6.241e-03, 
+Maximum absolute Quasi-symmetry (1,4) two-term error:        4.400e-02  -->   3.887e-02 (T^3)
+Minimum absolute Quasi-symmetry (1,4) two-term error:        6.835e-07  -->   2.660e-06 (T^3)
+Average absolute Quasi-symmetry (1,4) two-term error:        2.769e-03  -->   2.718e-03 (T^3)
+Aspect ratio:                                                8.000e+00  -->   8.000e+00 (dimensionless)
+Generic objective value:                                     1.167e+00  -->   1.167e+00 (T)
+Maximum absolute Force error:                                3.352e+02  -->   3.131e+02 (N)
+Minimum absolute Force error:                                4.355e-06  -->   1.672e-04 (N)
+Average absolute Force error:                                3.530e+00  -->   3.426e+00 (N)
+Maximum absolute Force error:                                1.109e-03  -->   1.036e-03 (normalized)
+Minimum absolute Force error:                                1.441e-11  -->   5.531e-10 (normalized)
+Average absolute Force error:                                1.168e-05  -->   1.133e-05 (normalized)
+LCFS R error:                                                0.000e+00  -->   0.000e+00 (m)
+LCFS Z error:                                                0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 5 wall time: 61.6 s
+
+===== optimizing boundary modes max(|m|,|n|) <= 6 =====
+
+Building objective: QS two-term
+Precomputing transforms
+Timer: Precomputing transforms = 87.6 ms
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 42.7 ms
+Building objective: Generic
+Timer: Objective build = 183 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 96.8 ms
+Timer: Objective build = 111 ms
+Timer: Objective build = 1.81 ms
+Timer: Eq Update LinearConstraintProjection build = 125 ms
+Timer: Proximal projection build = 3.07 sec
+Building objective: fixed LCFS R
+Building objective: fixed LCFS Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 456 ms
+Timer: LinearConstraintProjection build = 2.67 sec
+Number of parameters: 168
+Number of objectives: 1685
+Timer: Initializing the optimization = 6.44 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 5.000e-01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          6.390e-03                                    1.816e-02   
+       1              4          5.978e-03      4.118e-04      3.306e-05      4.524e-03   
+       2              7          5.960e-03      1.838e-05      4.602e-06      3.647e-03   
+Optimization terminated successfully.
+`ftol` condition satisfied. (ftol=1.00e-02)
+         Current function value: 5.960e-03
+         Total delta_x: 3.638e-05
+         Iterations: 2
+         Function evaluations: 7
+         Jacobian evaluations: 3
+Timer: Solution time = 38.7 sec
+Timer: Avg time per step = 12.9 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      6.390e-03  -->   5.960e-03, 
+Maximum absolute Quasi-symmetry (1,4) two-term error:        3.907e-02  -->   3.299e-02 (T^3)
+Minimum absolute Quasi-symmetry (1,4) two-term error:        1.109e-06  -->   3.752e-06 (T^3)
+Average absolute Quasi-symmetry (1,4) two-term error:        2.791e-03  -->   2.561e-03 (T^3)
+Aspect ratio:                                                8.000e+00  -->   8.000e+00 (dimensionless)
+Generic objective value:                                     1.167e+00  -->   1.167e+00 (T)
+Maximum absolute Force error:                                3.131e+02  -->   2.409e+02 (N)
+Minimum absolute Force error:                                1.672e-04  -->   1.541e-04 (N)
+Average absolute Force error:                                3.426e+00  -->   3.346e+00 (N)
+Maximum absolute Force error:                                1.036e-03  -->   7.971e-04 (normalized)
+Minimum absolute Force error:                                5.531e-10  -->   5.097e-10 (normalized)
+Average absolute Force error:                                1.133e-05  -->   1.107e-05 (normalized)
+LCFS R error:                                                0.000e+00  -->   0.000e+00 (m)
+LCFS Z error:                                                0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 6 wall time: 45.7 s
+
+===== optimizing boundary modes max(|m|,|n|) <= 7 =====
+
+Building objective: QS two-term
+Precomputing transforms
+Timer: Precomputing transforms = 89.2 ms
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 42.9 ms
+Building objective: Generic
+Timer: Objective build = 184 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 96.9 ms
+Timer: Objective build = 111 ms
+Timer: Objective build = 1.82 ms
+Timer: Eq Update LinearConstraintProjection build = 126 ms
+Timer: Proximal projection build = 2.65 sec
+Building objective: fixed LCFS R
+Building objective: fixed LCFS Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 480 ms
+Timer: LinearConstraintProjection build = 2.06 sec
+Number of parameters: 224
+Number of objectives: 1685
+Timer: Initializing the optimization = 5.42 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 5.000e-01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          5.995e-03                                    9.758e-03   
+       1              5          5.864e-03      1.312e-04      5.832e-06      3.116e-03   
+       2              6          5.750e-03      1.139e-04      1.308e-05      3.514e-03   
+       3              7          5.735e-03      1.511e-05      2.945e-05      1.129e-02   
+       4              8          5.574e-03      1.607e-04      7.473e-06      2.035e-03   
+       5             10          5.562e-03      1.242e-05      3.774e-06      1.332e-03   
+Optimization terminated successfully.
+`ftol` condition satisfied. (ftol=1.00e-02)
+         Current function value: 5.562e-03
+         Total delta_x: 5.121e-05
+         Iterations: 5
+         Function evaluations: 10
+         Jacobian evaluations: 6
+Timer: Solution time = 41.8 sec
+Timer: Avg time per step = 6.98 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      5.995e-03  -->   5.562e-03, 
+Maximum absolute Quasi-symmetry (1,4) two-term error:        3.300e-02  -->   2.797e-02 (T^3)
+Minimum absolute Quasi-symmetry (1,4) two-term error:        1.827e-06  -->   2.987e-06 (T^3)
+Average absolute Quasi-symmetry (1,4) two-term error:        2.578e-03  -->   2.318e-03 (T^3)
+Aspect ratio:                                                8.000e+00  -->   8.000e+00 (dimensionless)
+Generic objective value:                                     1.167e+00  -->   1.167e+00 (T)
+Maximum absolute Force error:                                2.409e+02  -->   2.246e+02 (N)
+Minimum absolute Force error:                                1.541e-04  -->   2.820e-05 (N)
+Average absolute Force error:                                3.346e+00  -->   4.477e+00 (N)
+Maximum absolute Force error:                                7.971e-04  -->   7.430e-04 (normalized)
+Minimum absolute Force error:                                5.097e-10  -->   9.330e-11 (normalized)
+Average absolute Force error:                                1.107e-05  -->   1.481e-05 (normalized)
+LCFS R error:                                                0.000e+00  -->   0.000e+00 (m)
+LCFS Z error:                                                0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 7 wall time: 47.9 s
+
+===== optimizing boundary modes max(|m|,|n|) <= 8 =====
+
+Building objective: QS two-term
+Precomputing transforms
+Timer: Precomputing transforms = 88.5 ms
+Building objective: aspect ratio
+Precomputing transforms
+Timer: Precomputing transforms = 42.9 ms
+Building objective: Generic
+Timer: Objective build = 183 ms
+Building objective: force
+Precomputing transforms
+Timer: Precomputing transforms = 95.3 ms
+Timer: Objective build = 108 ms
+Timer: Objective build = 1.81 ms
+Timer: Eq Update LinearConstraintProjection build = 126 ms
+Timer: Proximal projection build = 2.25 sec
+Building objective: fixed LCFS R
+Building objective: fixed LCFS Z
+Building objective: fixed pressure
+Building objective: fixed current
+Building objective: fixed Psi
+Timer: Objective build = 146 ms
+Timer: LinearConstraintProjection build = 2.02 sec
+Number of parameters: 288
+Number of objectives: 1685
+Timer: Initializing the optimization = 4.68 sec
+
+Starting optimization
+Using method: proximal-lsq-exact
+Solver options:
+------------------------------------------------------------
+Maximum Function Evaluations       : 251
+Maximum Allowed Total Δx Norm      : inf
+Scaled Termination                 : True
+Trust Region Method                : qr
+Initial Trust Radius               : 5.000e-01
+Maximum Trust Radius               : inf
+Minimum Trust Radius               : 2.220e-16
+Trust Radius Increase Ratio        : 2.000e+00
+Trust Radius Decrease Ratio        : 2.500e-01
+Trust Radius Increase Threshold    : 7.500e-01
+Trust Radius Decrease Threshold    : 2.500e-01
+------------------------------------------------------------ 
+
+   Iteration     Total nfev        Cost      Cost reduction    Step norm     Optimality   
+       0              1          5.560e-03                                    4.011e-03   
+       1              6          5.545e-03      1.448e-05      1.588e-06      3.608e-03   
+Optimization terminated successfully.
+`ftol` condition satisfied. (ftol=1.00e-02)
+         Current function value: 5.545e-03
+         Total delta_x: 1.588e-06
+         Iterations: 1
+         Function evaluations: 6
+         Jacobian evaluations: 2
+Timer: Solution time = 36.4 sec
+Timer: Avg time per step = 18.2 sec
+==============================================================================================================
+                                                                 Start  -->   End
+Total (sum of squares):                                      5.560e-03  -->   5.545e-03, 
+Maximum absolute Quasi-symmetry (1,4) two-term error:        2.796e-02  -->   2.774e-02 (T^3)
+Minimum absolute Quasi-symmetry (1,4) two-term error:        2.803e-06  -->   4.771e-08 (T^3)
+Average absolute Quasi-symmetry (1,4) two-term error:        2.316e-03  -->   2.305e-03 (T^3)
+Aspect ratio:                                                8.000e+00  -->   8.000e+00 (dimensionless)
+Generic objective value:                                     1.167e+00  -->   1.167e+00 (T)
+Maximum absolute Force error:                                2.246e+02  -->   2.266e+02 (N)
+Minimum absolute Force error:                                2.820e-05  -->   1.184e-03 (N)
+Average absolute Force error:                                4.477e+00  -->   4.586e+00 (N)
+Maximum absolute Force error:                                7.430e-04  -->   7.498e-04 (normalized)
+Minimum absolute Force error:                                9.330e-11  -->   3.918e-09 (normalized)
+Average absolute Force error:                                1.481e-05  -->   1.517e-05 (normalized)
+LCFS R error:                                                0.000e+00  -->   0.000e+00 (m)
+LCFS Z error:                                                0.000e+00  -->   0.000e+00 (m)
+Fixed pressure profile error:                                0.000e+00  -->   0.000e+00 (Pa)
+Fixed current profile error:                                 0.000e+00  -->   0.000e+00 (A)
+Fixed Psi error:                                             0.000e+00  -->   0.000e+00 (Wb)
+==============================================================================================================
+
+Step 8 wall time: 41.4 s
+
+Total optimization wall time: 608.1 s
+step 0    V =    0.308  R0/a =  8.000  <|B|> =  1.2548  <|F|>_n = 2.508e-05  f_qs = [0.5316 0.5607 0.6003]
+step 1    V =    0.307  R0/a =  7.990  <|B|> =  0.8976  <|F|>_n = 2.503e-04  f_qs = [0.0643 0.1142 0.1909]
+step 2    V =    0.303  R0/a =  8.000  <|B|> =  0.9867  <|F|>_n = 1.149e-03  f_qs = [0.0051 0.0121 0.0291]
+step 3    V =    0.286  R0/a =  8.000  <|B|> =  1.1642  <|F|>_n = 4.733e-04  f_qs = [0.0013 0.0034 0.0091]
+step 4    V =    0.285  R0/a =  8.000  <|B|> =  1.1674  <|F|>_n = 3.306e-04  f_qs = [0.0008 0.0028 0.0077]
+step 5    V =    0.285  R0/a =  8.000  <|B|> =  1.1674  <|F|>_n = 3.201e-04  f_qs = [0.0008 0.0027 0.0075]
+step 6    V =    0.285  R0/a =  8.000  <|B|> =  1.1675  <|F|>_n = 3.159e-04  f_qs = [0.0007 0.0026 0.0074]
+step 7    V =    0.285  R0/a =  8.000  <|B|> =  1.1675  <|F|>_n = 4.123e-04  f_qs = [0.0006 0.0026 0.007 ]
+step 8    V =    0.285  R0/a =  8.000  <|B|> =  1.1675  <|F|>_n = 4.211e-04  f_qs = [0.0006 0.0026 0.007 ]
