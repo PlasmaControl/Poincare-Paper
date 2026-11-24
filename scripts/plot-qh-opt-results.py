@@ -26,7 +26,7 @@ plt.rcParams.update(
     }
 )
 
-# optional argument: name of a variant run, e.g. wqs3-war3-wvol0-wb1-no-ess
+# optional argument: name of a variant run
 name = sys.argv[1] if len(sys.argv) > 1 else "wqs3-war3-wvol0-wb1"
 folder = "../figures" if len(sys.argv) == 1 else "../extra-images"
 suffix = "" if len(sys.argv) == 1 else f"-{name}"

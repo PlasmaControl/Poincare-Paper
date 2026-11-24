@@ -1,3 +1,0 @@
-DESC version=0.17.3+411.g8a54240a7.
-Using JAX backend: jax version=0.9.2, jaxlib version=0.9.2, dtype=float64.
-Using device: CPU, with 490.06 GB available memory.
